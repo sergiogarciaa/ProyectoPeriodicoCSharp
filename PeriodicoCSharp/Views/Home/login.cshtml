@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "login";
+    var mensajeRegistroExitoso = ViewData["MensajeRegistroExitoso"] as string;
+    var cuentaVerificada = ViewData["CuentaVerificada"] as string;
+    var cuentaNoVerificada = ViewData["EmailNoConfirmado"] as string;
+    var yaEstabaVerificada = ViewData["yaEstabaVerificada"] as string;
+    var mensajeExitoMail = ViewData["MensajeExitoMail"] as string;
+    var contraseñaModificada = ViewData["ContraseñaModificadaExito"] as string;
+    var mensajeErrorInicioSesion = ViewData["MensajeErrorInicioSesion"] as string;
+    var recursoProhibido = ViewData["RecursoProhibido"] as string;
+    var error = ViewData["error"] as string;
+}
+
+    <div class="wrapper">
+        <div class="logoLogin">
+        <img style="width: 20%;" src="https://png.pngtree.com/png-clipart/20210309/original/pngtree-3d-logo-design-vector-cdr-file-png-image_5883019.jpg" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            La Revista
+        </div>
+        <form class="p-3 mt-3 custom-form" method="POST" asp-action="LoginCorrecto" asp-controller="Login" asp-for="UsuarioDTO" role="form">
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input id="login-username" type="email" class="input form-control" name="username" placeholder="Email" required>
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input id="login-password" type="password" class="input form-control" name="password" placeholder="Contraseña" required>
+            </div>
+            <button class="btn mt-3" type="submit"><i class="bi bi-box-arrow-in-right fs-5"> Iniciar sesión</i></button>
+        </form>
+    
+</div>
