@@ -30,51 +30,48 @@ namespace PeriodicoCSharp.Servicios
         {
             try
             {
+
                 var usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == userDto.EmailUsuario && !u.CuentaConfirmada);
 
                 if (usuarioExistente != null)
                 {
-                    return null; // Si no es null es que ya está registrado
+                    userDto.EmailUsuario = "EmailNoConfirmado";
+                    return userDto;
                 }
 
-                var usuarioDao = _toDao.usuarioToDao(userDto);
-                usuarioDao.ClaveUsuario = _servicioEncriptar.Encriptar(userDto.ClaveUsuario);
+                var emailExistente = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == userDto.EmailUsuario && u.CuentaConfirmada);
+
+                if (emailExistente != null)
+                {
+                    userDto.EmailUsuario = "EmailRepetido";
+                    return userDto;
+                }
+
+                userDto.ClaveUsuario = _servicioEncriptar.Encriptar(userDto.ClaveUsuario);
+                Usuario usuarioDao = _toDao.usuarioToDao(userDto);
                 usuarioDao.FchAltaUsuario = DateTime.Now;
                 usuarioDao.Rol = "ROLE_1";
+                string token = generarToken();
+                usuarioDao.TokenRecuperacion = token;
 
-                if (userDto.CuentaConfirmada)
-                {
-                    usuarioDao.CuentaConfirmada = true;
-                    _contexto.Add(usuarioDao);
-                    _contexto.SaveChanges();
-                }
-                else
-                {
-                    usuarioDao.CuentaConfirmada = false;
-                    // Generar token de confirmación
-                    string token = generarToken();
-                    usuarioDao.TokenRecuperacion = token;
+                _contexto.Usuarios.Add(usuarioDao);
+                _contexto.SaveChanges();
 
-                    // Guardar el usuario en la base de datos
-                    _contexto.Usuarios.Add(usuarioDao);
-                    _contexto.SaveChanges();
-
-                    // Enviar el correo de confirmación
-                    string nombreUsuario = $"{usuarioDao.NombreUsuario} {usuarioDao.ApellidosUsuario}";
-                    _emailServicio.EnviarEmailConfirmacion(userDto.EmailUsuario, nombreUsuario, token);
-                }
+                string nombreUsuario = usuarioDao.NombreUsuario + " " + usuarioDao.ApellidosUsuario;
+                _emailServicio.EnviarEmailConfirmacion(userDto.EmailUsuario, nombreUsuario, token);
 
                 return userDto;
             }
             catch (ArgumentException ae)
             {
                 Console.WriteLine($"[Error ImplementacionUsuario - RegistrarAsync()] Argumento no válido al registrar usuario {ae.Message}");
+                return null;
             }
             catch (Exception e)
             {
                 Console.WriteLine($"[Error ImplementacionUsuario - RegistrarAsync()] Error al registrar usuario {e.Message}");
+                return null;
             }
-            return null;
         }
 
         public bool EstaLaCuentaConfirmada(string email)

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PeriodicoCSharp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4d5644318cad2001dfe55609d3c18161257133c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17d053c183fa8b4ae03fdd52a6ed4bd1443bdd05")]
 [assembly: System.Reflection.AssemblyProductAttribute("PeriodicoCSharp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PeriodicoCSharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -12,8 +12,8 @@ builder.Services.AddControllersWithViews();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<PeriodicoContext>(options =>
-     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
+builder.Services.AddDbContext<PeriodicoContext>(
+    options => options.UseNpgsql("name=ConnectionStrings:PostgresConnection"));
 
 builder.Services.AddScoped<UsuarioServicio, ImplementacionUsuario>();
 builder.Services.AddScoped<InterfazEncriptar, ImplementacionEncriptar>();

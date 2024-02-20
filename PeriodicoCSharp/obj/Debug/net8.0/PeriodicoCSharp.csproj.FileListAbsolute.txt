@@ -340,3 +340,6 @@ C:\Users\Puesto14\Desktop\DIW\ProyectoPeriodicoCSharp\PeriodicoCSharp\obj\Debug\
 C:\Users\Puesto14\Desktop\DIW\ProyectoPeriodicoCSharp\PeriodicoCSharp\obj\Debug\net8.0\ref\PeriodicoCSharp.dll
 C:\Users\Puesto14\Desktop\DIW\ProyectoPeriodicoCSharp\PeriodicoCSharp\bin\Debug\net8.0\DAL.dll
 C:\Users\Puesto14\Desktop\DIW\ProyectoPeriodicoCSharp\PeriodicoCSharp\bin\Debug\net8.0\DAL.pdb
+C:\Users\Sergio\Desktop\PeriodicoCSharp\PeriodicoCSharp\bin\Debug\net8.0\DAL.dll
+C:\Users\Sergio\Desktop\PeriodicoCSharp\PeriodicoCSharp\bin\Debug\net8.0\DAL.pdb
+C:\Users\Sergio\Desktop\PeriodicoCSharp\PeriodicoCSharp\obj\Debug\net8.0\PeriodicoCSharp.sourcelink.json

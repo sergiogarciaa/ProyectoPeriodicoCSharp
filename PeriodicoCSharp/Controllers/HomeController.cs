@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.Models;
 using System.Diagnostics;
@@ -13,14 +15,24 @@ namespace PeriodicoCSharp.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Gestiona las peticiones GET de la url / mostrando la primera vista de la aplicación (home)
+        /// </summary>
+        /// <returns>La vista de home</returns>
         public IActionResult Index()
         {
-            return View();
-        }
+            try
+            {
 
-        public IActionResult Privacy()
-        {
-            return View();
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewData["error"] = "Ocurrió un error al mostrar la vista de Home";
+                return View();
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

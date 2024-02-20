@@ -8,25 +8,26 @@ using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
-[Route("[controller]")]
-public class LoginRegistroControl : Controller
+public class LoginController : Controller
 {
     private readonly UsuarioServicio _usuarioServicio;
     private readonly InterfazUsuarioToDTO _usuarioToDTO;
 
-    public LoginRegistroControl(UsuarioServicio usuarioServicio, InterfazUsuarioToDTO usuarioToDTO)
+    public LoginController(UsuarioServicio usuarioServicio, InterfazUsuarioToDTO usuarioToDTO)
     {
         _usuarioServicio = usuarioServicio;
         _usuarioToDTO = usuarioToDTO;
     }
 
-    [HttpGet("/auth/login")]
-    public IActionResult Login()
-    {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        return View("~/Views/Home/login.cshtml", usuarioDTO);
-    }
+        [HttpGet]
+        [Route("/auth/login")]
+        public IActionResult Login()
+        {
+            UsuarioDTO usuarioDTO = new UsuarioDTO();
+            return View("~/Views/Home/login.cshtml", usuarioDTO);
+        }
 
     [HttpGet("/auth/landing")]
     public IActionResult Index()
@@ -34,52 +35,81 @@ public class LoginRegistroControl : Controller
         return Redirect("/");
     }
 
-    [HttpGet("/auth/registrar")]
-    public IActionResult RegistrarGet()
-    {
-        try
+        /// <summary>
+        /// Método HTTP GET de la url /auth/crear-cuenta para mostrar la vista de registro.
+        /// </summary>
+        /// <returns>La vista de registro</returns>
+        [HttpGet]
+        [Route("/auth/crear-cuenta")]
+        public IActionResult RegistrarGet()
         {
-            ViewBag.UsuarioDTO = new UsuarioDTO();
-            return View("registro");
-        }
-        catch (Exception e)
-        {
-            ViewBag.Error = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
-            return View("registro");
-        }
-    }
+            try
+            {
+                UsuarioDTO usuarioDTO = new UsuarioDTO();
+                return View("~/Views/Home/registro.cshtml", usuarioDTO);
 
-    [HttpPost("/auth/registrar")]
-    public IActionResult RegistrarPost([FromForm] UsuarioDTO usuarioDTO)
-    {
-        var nuevoUsuario = _usuarioServicio.Registrar(usuarioDTO);
+            }
+            catch (Exception e)
+            {
+                ViewData["error"] = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
+                Console.WriteLine(e);
+            return View("~/Views/Home/registro.cshtml");
+            }
+        }
 
-        if (nuevoUsuario != null && !nuevoUsuario.CuentaConfirmada)
+        /// <summary>
+        /// Método HTTP POST para procesar el registro de un nuevo usuario.
+        /// </summary>
+        /// <param name="usuarioDTO">DTO del usuario con los datos de registro</param>
+        /// <returns>La vista correspondiente según el resultado del registro</returns>
+        [HttpPost]
+        [Route("/auth/crear-cuenta")]
+        public IActionResult RegistrarPost(UsuarioDTO usuarioDTO)
         {
-            ViewBag.MensajeRegistroExitoso = "Registro del nuevo usuario OK";
-            return View("login");
-        }
-        else if (nuevoUsuario.CuentaConfirmada)
-        {
-            return View("login");
-        }
-        else
-        {
-            ViewBag.MensajeErrorMail = "Ya existe un usuario con ese email";
-            return View("registro");
-        }
-    }
+            try
+            {
 
-    [HttpGet("/privada/index")]
+                UsuarioDTO nuevoUsuario = _usuarioServicio.Registrar(usuarioDTO);
+ 
+            if (nuevoUsuario.EmailUsuario == "EmailNoConfirmado")
+                {
+                    ViewData["EmailNoConfirmado"] = "Ya existe un usuario registrado con ese email pero con la cuenta sin verificar";
+                    return View("~/Views/Home/login.cshtml");
+
+                }
+                else if (nuevoUsuario.EmailUsuario == "EmailRepetido")
+                {
+                    ViewData["EmailRepetido"] = "Ya existe un usuario con ese email registrado en el sistema";
+                    return View("~/Views/Home/registro.cshtml");
+                }
+                else
+                {
+                    ViewData["MensajeRegistroExitoso"] = "Registro del nuevo usuario OK";
+                    return View("~/Views/Home/login.cshtml");
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                ViewData["error"] = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
+                return View("~/Views/Home/registro.cshtml");
+            }
+        }
+
+    [HttpPost]
+    [Route("/auth/LoginCorrecto")]
     public IActionResult LoginCorrecto(UsuarioDTO usuarioDTO)
     {
         try
         {
+            Console.WriteLine("aqui");
             bool credencialesValidas = _usuarioServicio.verificarCredenciales(usuarioDTO.EmailUsuario, usuarioDTO.ClaveUsuario);
 
             if (credencialesValidas)
             {
                 UsuarioDTO u = _usuarioServicio.BuscarPorEmail(usuarioDTO.EmailUsuario);
+                Console.WriteLine(u);
 
                 // Al hacer login correctamente se crea una identidad de reclamaciones (claims identity) con información del usuario 
                 // y su rol, de esta manera se controla que solo los admin puedan acceder a la administracion de usuarios
@@ -98,10 +128,11 @@ public class LoginRegistroControl : Controller
                 // establece una cookie en el navegador con los datos del usuario antes mencionados y se mantiene en el contexto.
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identidadDeReclamaciones));
 
-                return RedirectToAction("Dashboard", "Login");
+                return RedirectToAction("index", "Login");
             }
             else
             {
+                Console.WriteLine("EROR CREDENCIALES");
                 ViewData["MensajeErrorInicioSesion"] = "Credenciales inválidas o cuenta no confirmada. Inténtelo de nuevo.";
                 return View("~/Views/Home/login.cshtml");
             }
@@ -109,6 +140,7 @@ public class LoginRegistroControl : Controller
         catch (Exception e)
         {
             ViewData["error"] = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
+            Console.WriteLine(e);
             return View("~/Views/Home/login.cshtml");
         }
     }
@@ -134,7 +166,17 @@ public class LoginRegistroControl : Controller
         catch (Exception e)
         {
             ViewBag.Error = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
+            Console.WriteLine(e);
             return View("login");
         }
+    }
+    [Authorize]
+    [HttpGet]
+    [Route("/privada/index")]
+    public IActionResult index()
+    {
+        UsuarioDTO u = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
+        ViewBag.UsuarioDTO = u;
+        return View("~/Views/Home/Index.cshtml");
     }
 }
