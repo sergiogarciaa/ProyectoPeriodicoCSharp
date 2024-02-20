@@ -1018,6 +1018,20 @@
         "build": {
           "buildTransitive/netcoreapp3.1/_._": {}
         }
+      },
+      "DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.1",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0"
+        },
+        "compile": {
+          "bin/placeholder/DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DAL.dll": {}
+        }
       }
     }
   },
@@ -2582,10 +2596,16 @@
         "system.threading.channels.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "DAL/1.0.0": {
+      "type": "project",
+      "path": "../DAL/DAL.csproj",
+      "msbuildProject": "../DAL/DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "DAL >= 1.0.0",
       "Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter >= 8.0.1",
       "Microsoft.EntityFrameworkCore >= 8.0.1",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.1",
@@ -2599,11 +2619,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoC\\ProyectoPeriodicoC\\PeriodicoCSharp\\PeriodicoCSharp.csproj",
+      "projectUniqueName": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\PeriodicoCSharp\\PeriodicoCSharp.csproj",
       "projectName": "PeriodicoCSharp",
-      "projectPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoC\\ProyectoPeriodicoC\\PeriodicoCSharp\\PeriodicoCSharp.csproj",
+      "projectPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\PeriodicoCSharp\\PeriodicoCSharp.csproj",
       "packagesPath": "C:\\Users\\Puesto14\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoC\\ProyectoPeriodicoC\\PeriodicoCSharp\\obj\\",
+      "outputPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\PeriodicoCSharp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Puesto14\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -2619,7 +2639,11 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\DAL\\DAL.csproj": {
+              "projectPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\DAL\\DAL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

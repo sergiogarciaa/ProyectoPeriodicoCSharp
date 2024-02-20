@@ -1,5 +1,5 @@
 ﻿using System;
-using PeriodicoCSharp.Entidades;
+using DAL.Entidades;
 using Microsoft.AspNetCore.Identity;
 
 using PeriodicoCSharp.DTO;

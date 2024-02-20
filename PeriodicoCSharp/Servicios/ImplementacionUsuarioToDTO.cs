@@ -1,5 +1,5 @@
 ﻿using PeriodicoCSharp.DTO;
-using PeriodicoCSharp.Entidades;
+using DAL.Entidades;
 
 namespace PeriodicoCSharp.Servicios
 {

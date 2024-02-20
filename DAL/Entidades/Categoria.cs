@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PeriodicoCSharp.Entidades;
+namespace DAL.Entidades;
 
 public partial class Categoria
 {

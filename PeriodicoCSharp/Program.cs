@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using PeriodicoCSharp.Entidades;
+using DAL.Entidades;
 using PeriodicoCSharp.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);

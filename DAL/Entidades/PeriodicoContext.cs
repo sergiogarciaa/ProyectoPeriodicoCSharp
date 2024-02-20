@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
-namespace PeriodicoCSharp.Entidades;
+namespace DAL.Entidades;
 
 public partial class PeriodicoContext : DbContext
 {
@@ -21,23 +21,15 @@ public partial class PeriodicoContext : DbContext
 
     public virtual DbSet<Noticia> Noticias { get; set; }
 
-    public virtual DbSet<NoticiaCategorium> NoticiaCategoria { get; set; }
-
     public virtual DbSet<NoticiaComentario> NoticiaComentarios { get; set; }
-
-    public virtual DbSet<NoticiaComentario1> NoticiaComentarios1 { get; set; }
-
-    public virtual DbSet<NoticiaComentario2> NoticiaComentarios2 { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
 
     public virtual DbSet<UsuarioComentario> UsuarioComentarios { get; set; }
 
-    public virtual DbSet<UsuarioComentario1> UsuarioComentarios1 { get; set; }
-
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=periodico;User Id=postgres;Password=Mitobyy12.");
+        => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=periodico;UserId=postgres;Password=Mitobyy12.");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -103,16 +95,6 @@ public partial class PeriodicoContext : DbContext
                 .HasConstraintName("fkrbdei6nfn304qyyonge87ualu");
         });
 
-        modelBuilder.Entity<NoticiaCategorium>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("noticia_categoria");
-
-            entity.Property(e => e.IdCategoria).HasColumnName("id_categoria");
-            entity.Property(e => e.IdNoticia).HasColumnName("id_noticia");
-        });
-
         modelBuilder.Entity<NoticiaComentario>(entity =>
         {
             entity
@@ -131,26 +113,6 @@ public partial class PeriodicoContext : DbContext
                 .HasForeignKey(d => d.IdNoticia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("fkqd9aagyg91260vcyh5aaph6xp");
-        });
-
-        modelBuilder.Entity<NoticiaComentario1>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("noticia_comentarios");
-
-            entity.Property(e => e.IdComentario).HasColumnName("id_comentario");
-            entity.Property(e => e.IdNoticia).HasColumnName("id_noticia");
-        });
-
-        modelBuilder.Entity<NoticiaComentario2>(entity =>
-        {
-            entity.HasKey(e => new { e.IdComentarioFk, e.IdNoticiaFk }).HasName("noticia_comentario_pkey");
-
-            entity.ToTable("noticia_comentario");
-
-            entity.Property(e => e.IdComentarioFk).HasColumnName("id_comentario_fk");
-            entity.Property(e => e.IdNoticiaFk).HasColumnName("id_noticia_fk");
         });
 
         modelBuilder.Entity<Usuario>(entity =>
@@ -204,16 +166,6 @@ public partial class PeriodicoContext : DbContext
         });
 
         modelBuilder.Entity<UsuarioComentario>(entity =>
-        {
-            entity
-                .HasNoKey()
-                .ToTable("usuario_comentarios");
-
-            entity.Property(e => e.IdComentario).HasColumnName("id_comentario");
-            entity.Property(e => e.IdUsuario).HasColumnName("id_usuario");
-        });
-
-        modelBuilder.Entity<UsuarioComentario1>(entity =>
         {
             entity
                 .HasNoKey()

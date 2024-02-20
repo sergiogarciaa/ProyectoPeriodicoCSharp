@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Bl9Sf/wH9FZMW5vwBMZI/1u581Ji3x+/RXud/chUH5WdOMy2Kl4d1Cenun7B60iX8llOvonPDhl+fPbThjHNqQ==",
+  "dgSpecHash": "X0sr0poeAjsmDEWbNN2gixlbD+zFa8x+zL36JDonp5lPS1lHVHKDL8kWGuaANRgbKc+1j31EntLY+fSxeI5mzQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoC\\ProyectoPeriodicoC\\PeriodicoCSharp\\PeriodicoCSharp.csproj",
+  "projectFilePath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\PeriodicoCSharp\\PeriodicoCSharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Puesto14\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Puesto14\\.nuget\\packages\\microsoft.aspnetcore.authorization\\8.0.1\\microsoft.aspnetcore.authorization.8.0.1.nupkg.sha512",
