@@ -23,7 +23,6 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
-
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 return View();
             }

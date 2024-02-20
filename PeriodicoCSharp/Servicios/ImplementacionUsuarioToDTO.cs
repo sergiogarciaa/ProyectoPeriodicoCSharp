@@ -36,6 +36,8 @@ namespace PeriodicoCSharp.Servicios
                 dto.ClaveUsuario = u.ClaveUsuario;
                 dto.TokenRecuperacion = u.TokenRecuperacion;
                 dto.ExpiracionToken = u.ExpiracionToken;
+                dto.FchAltaUsuario = u.FchAltaUsuario;
+                dto.Rol = u.Rol;
                 dto.Id = u.IdUsuario;
                 dto.CuentaConfirmada = u.CuentaConfirmada;
                 return dto;

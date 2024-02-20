@@ -103,7 +103,6 @@ public class LoginController : Controller
     {
         try
         {
-            Console.WriteLine("aqui");
             bool credencialesValidas = _usuarioServicio.verificarCredenciales(usuarioDTO.EmailUsuario, usuarioDTO.ClaveUsuario);
 
             if (credencialesValidas)
@@ -128,11 +127,10 @@ public class LoginController : Controller
                 // establece una cookie en el navegador con los datos del usuario antes mencionados y se mantiene en el contexto.
                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identidadDeReclamaciones));
 
-                return RedirectToAction("index", "Login");
+                return RedirectToAction("Menu", "Login");
             }
             else
             {
-                Console.WriteLine("EROR CREDENCIALES");
                 ViewData["MensajeErrorInicioSesion"] = "Credenciales inválidas o cuenta no confirmada. Inténtelo de nuevo.";
                 return View("~/Views/Home/login.cshtml");
             }
@@ -172,11 +170,20 @@ public class LoginController : Controller
     }
     [Authorize]
     [HttpGet]
-    [Route("/privada/index")]
-    public IActionResult index()
+    [Route("/privada/menu")]
+    public IActionResult Menu()
     {
         UsuarioDTO u = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
         ViewBag.UsuarioDTO = u;
-        return View("~/Views/Home/Index.cshtml");
+        Console.WriteLine("Rol USUARIO" + u.Rol + u.NombreUsuario);
+        Console.WriteLine("Ahora aqui");
+        return View("~/Views/Home/menu.cshtml");
+    }
+    
+    [HttpPost]
+    public IActionResult Salir()
+    {
+        HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        return RedirectToAction("Index", "Home");
     }
 }

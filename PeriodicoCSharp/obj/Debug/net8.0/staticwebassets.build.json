@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Lh077zYQLGidTPrVqYQZsHtNbZoZZAA2LHCINYshaBY=",
+  "Hash": "HuxWPUh7ZSurS5mY9erb6bfoZIW0GUTGByo70BAgpjA=",
   "Source": "PeriodicoCSharp",
   "BasePath": "_content/PeriodicoCSharp",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Sergio\\Desktop\\PeriodicoCSharp\\PeriodicoCSharp\\wwwroot\\css\\style.css",
+      "SourceId": "PeriodicoCSharp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Sergio\\Desktop\\PeriodicoCSharp\\PeriodicoCSharp\\wwwroot\\",
+      "BasePath": "_content/PeriodicoCSharp",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\Users\\Sergio\\Desktop\\PeriodicoCSharp\\PeriodicoCSharp\\wwwroot\\favicon.ico",

@@ -1,0 +1,46 @@
+﻿@{
+    ViewData["Title"] = "Edicion";
+}
+<div class="wrapper">
+    <div class="logoLogin">
+        <img src="https://www.freepnglogos.com/uploads/logo-nu-png/nu-logo-hd-free-nahdlatul-ulama-emblem-download-1.png" alt="">
+    </div>
+    <div class="text-center mt-4 name">
+        La Revista
+    </div>
+    <form class="custom-form cardPrincipal" asp-action="GuardarEdicion" asp-controller="Administracion" enctype="multipart/form-data" method="post" asp-route-id="@Model.Id">
+        <input type="hidden" name="id" value="@Model.Id" />
+
+        <div class="form-field d-flex align-items-center">
+            <span class="fa fa-user"></span>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="@Model.NombreUsuario" required />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fa fa-user"></span>
+            <input type="text" id="apellidos" name="apellidos" class="form-control" value="@Model.ApellidosUsuario" required />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fa fa-address-card"></span>
+            <input type="text" id="dni" name="dni" class="form-control" value="@Model.DniUsuario" required />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fa fa-phone"></span>
+            <input type="tel" id="telefono" name="telefono" class="form-control" value="@Model.TlfUsuario" required />
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="fa fa-envelope"></span>
+            <input type="email" id="email" name="email" class="form-control" value="@Model.EmailUsuario" readonly disabled />
+        </div>
+        <div class="mb-3">
+            <label for="rol" class="form-label textoPrincipal">Rol</label>
+            <select id="rol" name="rol" class="form-select" required>
+                <option value="ROLE_1" selected>Usuario</option>
+                <option value="ROLE_3">Periodista</option>
+                <option value="ROLE_4">Administrador</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-5">
+            <i class="bi bi-person-fill-gear fs-5"> Guardar cambios</i>
+        </button>
+    </form>
+</div>

@@ -299,18 +299,22 @@ namespace PeriodicoCSharp.Servicios
         {
             try
             {
-                var usuarioDao = _toDao.usuarioToDao(usuarioDTO);
-                _contexto.Usuarios.Update(usuarioDao);
-                _contexto.SaveChanges();
-                var usuarioDtoActualizado = _toDto.usuarioToDto(usuarioDao);
+                Usuario? usuarioActual = _contexto.Usuarios.Find(usuarioDTO.Id);
+                Console.WriteLine(usuarioDTO.NombreUsuario);
+                if (usuarioActual != null)
+                {
+                    usuarioActual.NombreUsuario = usuarioDTO.NombreUsuario;
+                    usuarioActual.ApellidosUsuario = usuarioDTO.ApellidosUsuario;
+                    usuarioActual.TlfUsuario = usuarioDTO.TlfUsuario;
+                    usuarioActual.DniUsuario = usuarioDTO.DniUsuario;
+                    usuarioActual.Rol = usuarioDTO.Rol;
+                    _contexto.Usuarios.Update(usuarioActual);
+                    _contexto.SaveChanges();
+                }
             }
             catch (ArgumentException ae)
             {
                 Console.WriteLine($"[Error ImplementacionUsuario - ActualizarUsuario()] {ae.Message}");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"[Error ImplementacionUsuario - ActualizarUsuario()] {e.Message}");
             }
         }
 
