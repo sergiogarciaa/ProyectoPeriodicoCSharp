@@ -13,12 +13,14 @@ using Microsoft.AspNetCore.Authorization;
 public class LoginController : Controller
 {
     private readonly UsuarioServicio _usuarioServicio;
-    private readonly InterfazUsuarioToDTO _usuarioToDTO;
+    private readonly ConversionDTO _usuarioToDTO;
+    private readonly InterfazNoticia _noticia;
 
-    public LoginController(UsuarioServicio usuarioServicio, InterfazUsuarioToDTO usuarioToDTO)
+    public LoginController(UsuarioServicio usuarioServicio, ConversionDTO usuarioToDTO, InterfazNoticia interfazNoticia)
     {
         _usuarioServicio = usuarioServicio;
         _usuarioToDTO = usuarioToDTO;
+        _noticia = interfazNoticia;
     }
 
         [HttpGet]
@@ -175,6 +177,7 @@ public class LoginController : Controller
     {
         UsuarioDTO u = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
         ViewBag.UsuarioDTO = u;
+        ViewBag.Noticia = _noticia.buscarTodas();
         Console.WriteLine("Rol USUARIO" + u.Rol + u.NombreUsuario);
         Console.WriteLine("Ahora aqui");
         return View("~/Views/Home/menu.cshtml");

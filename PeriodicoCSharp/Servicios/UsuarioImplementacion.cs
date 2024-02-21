@@ -12,12 +12,12 @@ namespace PeriodicoCSharp.Servicios
     {
         private readonly PeriodicoContext _contexto;
         private readonly InterfazEncriptar _servicioEncriptar;
-        private readonly InterfazUsuarioToDao _toDao;
-        private readonly InterfazUsuarioToDTO _toDto;
+        private readonly ConversionDao _toDao;
+        private readonly ConversionDTO _toDto;
         private readonly InterfazEmail _emailServicio;
 
-        public ImplementacionUsuario(PeriodicoContext contexto, InterfazEncriptar servicioEncriptar, InterfazUsuarioToDao toDao,
-                                     InterfazUsuarioToDTO toDto, InterfazEmail emailServicio)
+        public ImplementacionUsuario(PeriodicoContext contexto, InterfazEncriptar servicioEncriptar, ConversionDao toDao,
+                                     ConversionDTO toDto, InterfazEmail emailServicio)
         {
             _contexto = contexto;
             _servicioEncriptar = servicioEncriptar;

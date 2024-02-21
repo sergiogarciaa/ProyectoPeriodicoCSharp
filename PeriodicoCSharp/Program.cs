@@ -16,9 +16,10 @@ builder.Services.AddDbContext<PeriodicoContext>(
     options => options.UseNpgsql("name=ConnectionStrings:PostgresConnection"));
 
 builder.Services.AddScoped<UsuarioServicio, ImplementacionUsuario>();
+builder.Services.AddScoped<InterfazNoticia, ImplementacionNoticia>();
 builder.Services.AddScoped<InterfazEncriptar, ImplementacionEncriptar>();
-builder.Services.AddScoped<InterfazUsuarioToDTO, ImplementacionUsuarioToDTO>();
-builder.Services.AddScoped<InterfazUsuarioToDao, ImplementacionUsuarioToDao>();
+builder.Services.AddScoped<ConversionDao, ConversionDaoImpl>();
+builder.Services.AddScoped<ConversionDTO, ConversionDTOImpl>();
 builder.Services.AddScoped<InterfazEmail, ImplementacionEmail>();
 
 builder.Services.AddAuthentication(options =>

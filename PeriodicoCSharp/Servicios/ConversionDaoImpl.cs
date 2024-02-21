@@ -1,10 +1,37 @@
-﻿using PeriodicoCSharp.DTO;
-using DAL.Entidades;
+﻿using DAL.Entidades;
+using PeriodicoCSharp.DTO;
 
 namespace PeriodicoCSharp.Servicios
 {
-    public class ImplementacionUsuarioToDao : InterfazUsuarioToDao
+    public class ConversionDaoImpl : ConversionDao
     {
+
+        public Noticia noticiaToDao(NoticiaDTO noticiaDTO, Usuario usuario, Categoria categoria)
+        {
+            Noticia noticiaToDao = new Noticia();
+
+
+            try
+            {
+                noticiaToDao.IdNoticia = noticiaDTO.IdNoticia;
+                noticiaToDao.TituloNoticia = noticiaDTO.TituloNoticia;
+                noticiaToDao.DescNoticia = noticiaDTO.DescNoticia;
+                noticiaToDao.RequiereSuscripcion = noticiaDTO.RequiereSuscripcion;
+                noticiaToDao.FchPublicacion = noticiaDTO.FchPublicacion;
+
+                noticiaToDao.IdUsuarioNoticiaNavigation = usuario;
+                noticiaToDao.IdCategoriaNoticiaNavigation = categoria;
+
+                return noticiaToDao;
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\n[ERROR UsuarioToDaoImpl - toUsuarioDao()] - Al convertir usuarioDTO a usuarioDAO (return null): " + e);
+                return null;
+            }
+        }
+
         public List<Usuario> listUsuarioToDao(List<UsuarioDTO> listaUsuarioDTO)
         {
             List<Usuario> listaUsuarioDao = new List<Usuario>();

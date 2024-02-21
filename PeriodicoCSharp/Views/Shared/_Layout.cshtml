@@ -60,7 +60,7 @@
                        
                     }
                 }
-                @if (currentController == "Administracion" && currentAction == "ListadoUsuarios" || currentController == "Administracion" && currentAction == "EliminarUsuario")
+                @if (currentController == "Administracion" && currentAction == "ListadoUsuarios" || currentController == "Administracion" && currentAction == "EliminarUsuario" || currentController == "Administracion" && currentAction == "GuardarEdicion")
                 {
                     <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/menu">Volver</a>
                     <form asp-action="Salir" method="post" id="logoutForm">

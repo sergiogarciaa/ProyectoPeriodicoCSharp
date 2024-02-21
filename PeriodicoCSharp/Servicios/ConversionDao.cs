@@ -1,9 +1,9 @@
-﻿using PeriodicoCSharp.DTO;
-using DAL.Entidades;
+﻿using DAL.Entidades;
+using PeriodicoCSharp.DTO;
 
 namespace PeriodicoCSharp.Servicios
 {
-    public interface InterfazUsuarioToDao
+    public interface ConversionDao
     {
 
         /// <summary>
@@ -19,5 +19,7 @@ namespace PeriodicoCSharp.Servicios
         /// <param name="listaUsuarioDTO">Lista de objetos UsuarioDTO a convertir.</param>
         /// <returns>Lista de objetos Usuario convertidos.</returns>
         public List<Usuario> listUsuarioToDao(List<UsuarioDTO> listaUsuarioDTO);
+
+        public Noticia noticiaToDao(NoticiaDTO noticiaDTO, Usuario usuario, Categoria categoria);
     }
 }

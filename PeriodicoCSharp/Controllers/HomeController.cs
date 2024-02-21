@@ -3,16 +3,23 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.Models;
 using System.Diagnostics;
+using DAL.Entidades;
+using PeriodicoCSharp.DTO;
+using PeriodicoCSharp.Servicios;
 
 namespace PeriodicoCSharp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly InterfazNoticia _noticia;
+        private readonly PeriodicoContext _contexto;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, InterfazNoticia noticiaInterfaz, PeriodicoContext periodicoContext, InterfazNoticia interfazNoticia)
         {
             _logger = logger;
+            _contexto = periodicoContext;
+            _noticia = interfazNoticia;
         }
 
         /// <summary>
@@ -23,8 +30,11 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                List<NoticiaDTO> noticias = new List<NoticiaDTO>();
+                ViewBag.Noticia = _noticia.buscarTodas();
+
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-                return View();
+                return View(noticias);
             }
             catch (Exception e)
             {
