@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
 
 namespace PeriodicoCSharp.Controllers
@@ -58,6 +59,33 @@ namespace PeriodicoCSharp.Controllers
                 ViewData["Error"] = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
                 Console.WriteLine("Error en VerCategoria: " + e.Message);
                 return View("Menu");
+            }
+        }
+
+        [HttpGet]
+        [Route("/noticias/{idNoticia}")]
+        public IActionResult VerNoticia(int idNoticia)
+        {
+            try
+            {
+                // Obtener la noticia por su ID
+                NoticiaDTO noticia = _noticia.buscarNoticiaPorIDDTO(idNoticia);
+
+                if (noticia == null)
+                {
+                    // Si la noticia no se encuentra, puedes redirigir a una página de error o hacer lo que desees
+                    return RedirectToAction("Index", "Home");
+                }
+
+                // Pasar la noticia al modelo y mostrar la vista con la noticia completa
+                return View("~/Views/Home/verNoticia.cshtml", noticia);
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier error que pueda ocurrir durante la obtención de la noticia
+                ViewData["Error"] = "Error al cargar la noticia.";
+                Console.WriteLine("Error al cargar la noticia - " + ex);
+                return View("~/Views/Home/menu.cshtml"); // Asegúrate de tener una vista llamada "Error" para redirigir en caso de error
             }
         }
     }

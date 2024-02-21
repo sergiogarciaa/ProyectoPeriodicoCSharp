@@ -53,6 +53,21 @@ namespace PeriodicoCSharp.Servicios
             }
         }
 
+        public NoticiaDTO buscarNoticiaPorIDDTO(long id)
+        {
+            try
+            {
+                Noticia? noticia = _contexto.Noticias.FirstOrDefault(n => n.IdNoticia == id);
+                NoticiaDTO noticiaDTO = _toDto.noticiaToDto(noticia);
+                return noticiaDTO;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionNoticia - BuscarPorId()] {e.Message}");
+                return null;
+            }
+        }
+
         public List<NoticiaDTO> buscarPorCategoria(long idCategoria)
         {
             // Utilizando LINQ para buscar noticias por categoría

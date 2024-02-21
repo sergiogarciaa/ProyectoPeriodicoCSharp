@@ -13,6 +13,12 @@ namespace PeriodicoCSharp.Servicios
 	     */
         public Noticia buscarNoticiaPorID(long id);
         /**
+        * Busca a una noticia por ID
+        * @param id de la noticia a buscar
+        * @return La noticia
+        */
+        public NoticiaDTO buscarNoticiaPorIDDTO(long id);
+        /**
          * Busca todas las noticias
          * @return la lista de todas las noticias
          */
