@@ -133,10 +133,10 @@ namespace PeriodicoCSharp.Servicios
 
         public string resumirNoticia(string texto)
         {
-            if (texto != null && texto.Length >= 35)
+            if (texto != null && texto.Length >= 200)
             {
                 // Subcadena que contiene los primeros 35 caracteres
-                return texto.Substring(0, 35);
+                return texto.Substring(0, 200) + "...";
             }
             else
             {

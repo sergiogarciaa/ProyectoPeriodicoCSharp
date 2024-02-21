@@ -93,6 +93,10 @@ function confirmarEliminar(event) {
     });
 }
 
+function redireccionarNoticia(idNoticia) {
+    window.location.href = 'http://localhost:5105/noticias/' + idNoticia;
+}
+
 function confirmarEdicion(event) {
     const idUsuario = event.currentTarget.getAttribute("data-id");
     const rol = event.currentTarget.getAttribute("get-rol");
@@ -119,9 +123,9 @@ function confirmarRedireccion(event) {
     // Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
     const idNoticia = parseInt(event.currentTarget.getAttribute("data-idNoticia"), 10);
     const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
-    const idUsuario = event.currentTarget.getAttribute("get-id");
+
     confirmar().then(function (confirmado) {
-        if (idUsuario == null) {
+        if (!isLoggedIn) {
             return Swal.fire({
                 title: 'Necesita iniciar sesión',
                 icon: 'error',
@@ -133,36 +137,30 @@ function confirmarRedireccion(event) {
                 return result.isConfirmed;
             });
         }
-        if (confirmado) {
+       else {
             window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
         }
     });
-
-
 }
 function confirmarRedireccionCategoria(event) {
     // Añadir comprobacion de rol para ver si esta logeado y poner SwalFire.
     const idCategoria = parseInt(event.currentTarget.getAttribute("data-idCategoria"), 10);
-    const idUsuario = event.currentTarget.getAttribute("get-id");
-    confirmar().then(function (confirmado) {
-        if (idUsuario == null) {
-            return Swal.fire({
-                title: 'Necesita iniciar sesión',
-                icon: 'error',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Aceptar'
-            }).then((result) => {
-                return result.isConfirmed;
-            });
-        }
-        if (confirmado) {
-            window.location.href = 'http://localhost:8080/privada/ver/' + idCategoria;
-        }
-    });
+    const isLoggedIn = event.currentTarget.getAttribute("data-isLoggedIn");
 
-
+    if (isLoggedIn === "true") {
+        // El usuario está autenticado, redirigirlo
+        window.location.href = 'http://localhost:5105/privada/ver/' + idCategoria;
+    } else {
+        // El usuario no está autenticado, mostrar mensaje de error
+        Swal.fire({
+            title: 'Necesita iniciar sesión',
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Aceptar'
+        });
+    }
 }
 
 function RedireccionCategoriaSinInicio(event) {

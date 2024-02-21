@@ -9,18 +9,21 @@ using PeriodicoCSharp.Servicios;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using DAL.Entidades;
 
 public class LoginController : Controller
 {
     private readonly UsuarioServicio _usuarioServicio;
     private readonly ConversionDTO _usuarioToDTO;
     private readonly InterfazNoticia _noticia;
+    private readonly InterfazCategoria _categoria;
 
-    public LoginController(UsuarioServicio usuarioServicio, ConversionDTO usuarioToDTO, InterfazNoticia interfazNoticia)
+    public LoginController(UsuarioServicio usuarioServicio, ConversionDTO usuarioToDTO, InterfazNoticia interfazNoticia, InterfazCategoria categoria)
     {
         _usuarioServicio = usuarioServicio;
         _usuarioToDTO = usuarioToDTO;
         _noticia = interfazNoticia;
+        _categoria = categoria;
     }
 
         [HttpGet]
@@ -177,9 +180,15 @@ public class LoginController : Controller
     {
         UsuarioDTO u = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
         ViewBag.UsuarioDTO = u;
-        ViewBag.Noticia = _noticia.buscar4Primeras();
-        Console.WriteLine("Rol USUARIO" + u.Rol + u.NombreUsuario);
-        Console.WriteLine("Ahora aqui");
+        List<NoticiaDTO> noticias = _noticia.buscar4Primeras();
+        List<CategoriaDTO> categorias = _categoria.BuscarTodas();
+        // Resumir noticias
+        foreach (var noticia in noticias)
+        {
+            noticia.resumenNoticia = _noticia.resumirNoticia(noticia.DescNoticia);
+        }
+        ViewBag.Noticia = noticias;
+        ViewBag.Categorias = categorias;
         return View("~/Views/Home/menu.cshtml");
     }
     

@@ -1,13 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
-    bool isLoggedIn = User.Identity.IsAuthenticated;
 }
-@if (ViewBag.Categorias != null)
+@if (ViewBag.CategoriaTodasDTO != null)
 {
     <div class="text-center">
         <div class="nav-scroller py-1 mb-2">
             <nav class="nav d-flex justify-content-between px-3">
-                @foreach (var categoria in ViewBag.Categorias)
+                @foreach (var categoria in ViewBag.CategoriaTodasDTO)
                 {
                     <a class="p-2 link-secondary" onclick="confirmarRedireccionCategoria(event)"
                        data-idCategoria="@categoria.IdCategoria"
@@ -19,12 +17,11 @@
         </div>
     </div>
 }
-
 <div class="row col-12 d-flex mb-2">
-    @if (ViewBag.Noticia != null)
+    @if (ViewBag.NoticiasPorCategoria != null)
     {
 
-        @foreach (var noticia in ViewBag.Noticia)
+        @foreach (var noticia in ViewBag.NoticiasPorCategoria)
         {
             <div class="row col-6 g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
@@ -50,6 +47,3 @@
     }
 </div>
 
-<script>
-    var isLoggedIn = @Html.Raw(Json.Serialize(isLoggedIn));
-</script>

@@ -13,13 +13,15 @@ namespace PeriodicoCSharp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly InterfazNoticia _noticia;
+        private readonly InterfazCategoria _categoria;
         private readonly PeriodicoContext _contexto;
 
-        public HomeController(ILogger<HomeController> logger, InterfazNoticia noticiaInterfaz, PeriodicoContext periodicoContext, InterfazNoticia interfazNoticia)
+        public HomeController(ILogger<HomeController> logger, InterfazNoticia noticiaInterfaz, PeriodicoContext periodicoContext, InterfazNoticia interfazNoticia, InterfazCategoria categoria)
         {
             _logger = logger;
             _contexto = periodicoContext;
             _noticia = interfazNoticia;
+            _categoria = categoria;
         }
 
         /// <summary>
@@ -31,12 +33,14 @@ namespace PeriodicoCSharp.Controllers
             try
             {
                 List<NoticiaDTO> noticias = _noticia.buscar4Primeras();
+                List<CategoriaDTO> categorias = _categoria.BuscarTodas();
                 // Resumir noticias
                 foreach (var noticia in noticias)
                 {
                     noticia.resumenNoticia = _noticia.resumirNoticia(noticia.DescNoticia);
                 }
                 ViewBag.Noticia = noticias;
+                ViewBag.Categorias = categorias;
 
 
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

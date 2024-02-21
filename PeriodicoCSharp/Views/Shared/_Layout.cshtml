@@ -60,7 +60,7 @@
                        
                     }
                 }
-                @if (currentController == "Administracion" && currentAction == "ListadoUsuarios" || currentController == "Administracion" && currentAction == "EliminarUsuario" || currentController == "Administracion" && currentAction == "GuardarEdicion" || currentController == "Periodista" && currentAction == "ZonaPeriodista")
+                @if (currentController == "Administracion" && currentAction == "ListadoUsuarios" || currentController == "Administracion" && currentAction == "EliminarUsuario" || currentController == "Administracion" && currentAction == "GuardarEdicion" || currentController == "Periodista" && currentAction == "ZonaPeriodista" || currentController == "Noticias" && currentAction == "VerCategoria")
                 {
                     <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/menu">Volver</a>
                     <form asp-action="Salir" asp-controller="Login" method="post" id="logoutForm">

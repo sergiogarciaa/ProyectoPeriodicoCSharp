@@ -2296,19 +2296,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Puesto14\\.nuget\\packages\\": {}
+    "C:\\Users\\Sergio\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\ProyectoPeriodicoCSharp\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\Sergio\\Desktop\\PeriodicoCSharp\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\ProyectoPeriodicoCSharp\\DAL\\DAL.csproj",
-      "packagesPath": "C:\\Users\\Puesto14\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Puesto14\\Desktop\\DIW\\ProyectoPeriodicoCSharp\\ProyectoPeriodicoCSharp\\DAL\\obj\\",
+      "projectPath": "C:\\Users\\Sergio\\Desktop\\PeriodicoCSharp\\DAL\\DAL.csproj",
+      "packagesPath": "C:\\Users\\Sergio\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Sergio\\Desktop\\PeriodicoCSharp\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Puesto14\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sergio\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2371,7 +2371,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
