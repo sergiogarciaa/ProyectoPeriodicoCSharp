@@ -1,0 +1,41 @@
+﻿@model PeriodicoCSharp.DTO.NoticiaDTO
+
+@{
+    ViewData["Title"] = "Crear Noticia";
+}
+
+<div class="container py-4 mt-5">
+    <div style="text-align: center;">
+        <h3>Crear Noticia</h3>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+        <div class="card bg-light" style="justify-content: center; text-align: center; width: 50%;">
+            <div class="card-header" style="justify-content: center; display: flex;">
+                <div class="contenedor form-registro">
+                    <form class="formEspecial" asp-action="crearNoticia" asp-controller="Periodista" method="post" enctype="multipart/form-data">
+                        <div class="form-field">
+                            <input type="text" id="TituloNoticia" name="TituloNoticia" class="input" placeholder="Título de la Noticia" required>
+                        </div>
+                        <div class="form-field">
+                            <textarea id="DescNoticia" name="DescNoticia" class="input" placeholder="Descripción de la Noticia" required></textarea>
+                        </div>
+                        <div class="form-field">
+                            <input type="file" id="foto" name="file" accept="image/*" required>
+                        </div>
+                        <div class="form-field">
+                            <select id="idCategoria" name="idCategoria" class="input form-field d-flex text-center align-items-center" required>
+                                @foreach (var categoria in ViewBag.CategoriasDTO)
+                                {
+                                    <option value="@categoria.IdCategoria">@categoria.TipoCategoria</option>
+                                }
+                            </select>
+                        </div>
+                        <button type="submit" id="btnGuardarNoticia" class="form-btn">Guardar Noticia</button>
+                        <div class="mensajeContrasenya" id="mensajeContrasenya"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

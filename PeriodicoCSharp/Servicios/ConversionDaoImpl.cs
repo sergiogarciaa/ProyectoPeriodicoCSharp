@@ -8,11 +8,9 @@ namespace PeriodicoCSharp.Servicios
 
         public Noticia noticiaToDao(NoticiaDTO noticiaDTO, Usuario usuario, Categoria categoria)
         {
-            Noticia noticiaToDao = new Noticia();
-
-
             try
             {
+                Noticia noticiaToDao = new Noticia();
                 noticiaToDao.IdNoticia = noticiaDTO.IdNoticia;
                 noticiaToDao.TituloNoticia = noticiaDTO.TituloNoticia;
                 noticiaToDao.DescNoticia = noticiaDTO.DescNoticia;

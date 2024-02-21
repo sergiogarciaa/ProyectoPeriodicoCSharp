@@ -1,6 +1,7 @@
 ﻿using DAL.Entidades;
 using Microsoft.EntityFrameworkCore;
 using PeriodicoCSharp.DTO;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -16,6 +17,26 @@ namespace PeriodicoCSharp.Servicios
             _contexto = contexto;
             _toDao = toDao;
             _toDto = toDto;
+        }
+
+        public List<NoticiaDTO> buscar4Primeras()
+        {
+            try
+            {
+                // Obtener las 4 noticias más recientes ordenadas por fecha de publicación descendente
+                var noticiasRecientes = _contexto.Noticias
+                    .OrderByDescending(n => n.FchPublicacion)
+                    .Take(4)
+                    .ToList();
+
+                // Convertir las noticias a DTOs
+                return _toDto.listaNoticiasToDto(noticiasRecientes);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionUsuario - BuscarCuatroMasRecientes()] {e.Message}");
+                return new List<NoticiaDTO>();
+            }
         }
 
         public Noticia buscarNoticiaPorID(long id)
@@ -59,14 +80,35 @@ namespace PeriodicoCSharp.Servicios
             }
         }
 
-        public string convertToBase64(byte[] bytes)
+        public string ConvertToBase64(IFormFile file)
         {
-            throw new NotImplementedException();
+            using (var memoryStream = new MemoryStream())
+            {
+                // Copiar los bytes del archivo al flujo de memoria
+                file.CopyTo(memoryStream);
+
+                // Obtener los bytes del archivo
+                var fileBytes = memoryStream.ToArray();
+
+                // Convertir los bytes a base64
+                return Convert.ToBase64String(fileBytes);
+            }
         }
 
-        public byte[] convertToByteArray(string foto)
+        public byte[] convertToByteArray(string base64String)
         {
-            throw new NotImplementedException();
+            if (!string.IsNullOrEmpty(base64String))
+            {
+                return Convert.FromBase64String(base64String);
+            }
+            return null;
+        }
+
+        public void GuardarNoticia(Noticia noticia)
+        {
+            
+            _contexto.Noticias.Add(noticia);
+            _contexto.SaveChanges();
         }
 
         public Noticia obtenerNoticiaMasReciente()

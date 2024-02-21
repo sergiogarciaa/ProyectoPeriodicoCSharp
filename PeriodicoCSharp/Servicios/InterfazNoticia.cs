@@ -17,14 +17,16 @@ namespace PeriodicoCSharp.Servicios
          * @return la lista de todas las noticias
          */
         public List<NoticiaDTO> buscarTodas();
+        public List<NoticiaDTO> buscar4Primeras();
         public String resumirNoticia(String texto);
         public String resumirNoticia2(String texto)
             ;
         List<NoticiaDTO> buscarPorCategoria(long idCategoria);
 
-        public String convertToBase64(byte[] bytes);
+        public string ConvertToBase64(IFormFile file);
 
         public byte[] convertToByteArray(String foto);
         public Noticia obtenerNoticiaMasReciente();
+        public void GuardarNoticia(Noticia noticia);
     }
 }

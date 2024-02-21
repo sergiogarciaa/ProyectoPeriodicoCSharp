@@ -8,9 +8,9 @@
     {
         @foreach (var noticia in ViewBag.Noticia)
         {
-            <tr>
-                <td>@noticia.TituloNoticia</td>
-            </tr>
+                <span>@noticia.resumenNoticia</span
+                <span>@noticia.FchPublicacion</span>
+        }
         }
     }
 </div>

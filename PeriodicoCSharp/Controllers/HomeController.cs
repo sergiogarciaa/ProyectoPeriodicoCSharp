@@ -30,8 +30,14 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
-                List<NoticiaDTO> noticias = new List<NoticiaDTO>();
-                ViewBag.Noticia = _noticia.buscarTodas();
+                List<NoticiaDTO> noticias = _noticia.buscar4Primeras();
+                // Resumir noticias
+                foreach (var noticia in noticias)
+                {
+                    noticia.resumenNoticia = _noticia.resumirNoticia(noticia.DescNoticia);
+                }
+                ViewBag.Noticia = noticias;
+
 
                 HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
                 return View(noticias);

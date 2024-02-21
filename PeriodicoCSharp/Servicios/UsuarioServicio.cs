@@ -102,5 +102,6 @@ namespace PeriodicoCSharp.Servicios
         /// <param name="token">El token de confirmación</param>
         /// <returns>True si la cuenta se confirmó correctamente, false en caso contrario</returns>
         bool ConfirmarCuenta(string token);
+        public Usuario BuscarPorEmailDAO(string? name);
     }
 }

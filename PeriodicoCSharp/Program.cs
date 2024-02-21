@@ -17,6 +17,7 @@ builder.Services.AddDbContext<PeriodicoContext>(
 
 builder.Services.AddScoped<UsuarioServicio, ImplementacionUsuario>();
 builder.Services.AddScoped<InterfazNoticia, ImplementacionNoticia>();
+builder.Services.AddScoped<InterfazCategoria, ImplementacionCategoria>();
 builder.Services.AddScoped<InterfazEncriptar, ImplementacionEncriptar>();
 builder.Services.AddScoped<ConversionDao, ConversionDaoImpl>();
 builder.Services.AddScoped<ConversionDTO, ConversionDTOImpl>();

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using PeriodicoCSharp.DTO;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -377,5 +378,18 @@ namespace PeriodicoCSharp.Servicios
             }
         }
 
+        public Usuario BuscarPorEmailDAO(string? name)
+        {
+            try
+            {
+                var usuario = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == name);
+                return usuario;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionUsuario - BuscarPorEmail()] {e.Message}");
+                return null;
+            }
+        }
     }
 }

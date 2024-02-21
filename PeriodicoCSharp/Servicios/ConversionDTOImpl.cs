@@ -88,5 +88,42 @@ namespace PeriodicoCSharp.Servicios
                 return null;
             }
         }
+
+        public CategoriaDTO categoriaToDTO(Categoria categoria)
+        {
+            try
+            {
+                CategoriaDTO dto = new CategoriaDTO();
+                dto.IdCategoria = categoria.IdCategoria;
+                dto.TipoCategoria = categoria.TipoCategoria;
+                dto.DescCategoria = categoria.DescCategoria;
+                // Puedes agregar más atributos según sea necesario
+
+                return dto;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("[ERROR ImplementacionCategoriaToDto - categoriaToDto()] - Error al convertir noticia DAO a categoriaDTO (return null): " + e);
+                return null;
+            }
+        }
+
+        public List<CategoriaDTO> listaCategoriaToDto(List<Categoria> listaCategoria)
+        {
+            try
+            {
+                List<CategoriaDTO> listaCategoriaDto = new List<CategoriaDTO>();
+                foreach (Categoria c in listaCategoria)
+                {
+                    listaCategoriaDto.Add(categoriaToDTO(c));
+                }
+                return listaCategoriaDto;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaCategoriaToDto()] - Error al convertir lista de categoria DAO a lista de categoriaDTO (return null): " + e);
+                return null;
+            }
+        }
     }
 }

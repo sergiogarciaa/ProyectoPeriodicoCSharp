@@ -21,5 +21,8 @@ namespace PeriodicoCSharp.Servicios
 
         NoticiaDTO noticiaToDto(Noticia noticia);
         public List<NoticiaDTO> listaNoticiasToDto(List<Noticia> listaNoticia);
+
+        CategoriaDTO categoriaToDTO(Categoria categoria);
+        public List<CategoriaDTO> listaCategoriaToDto(List<Categoria> listaCategoria);
     }
 }

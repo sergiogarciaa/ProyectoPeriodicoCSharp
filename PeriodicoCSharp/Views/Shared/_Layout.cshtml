@@ -46,24 +46,24 @@
                     if (User.IsInRole("ROLE_4"))
                     {
                         <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/administracion">Administracion</a>
-                        <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/periodista">Periodista</a>
-                        <form asp-action="Salir" method="post" id="logoutForm">
+                        <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/zonaPeriodista">Periodista</a>
+                        <form asp-action="Salir" asp-controller="Login" method="post" id="logoutForm">
                             <a class="btn btn-sm btn-outline-secondary" onclick="confirmarLogout()">Salir</a>
                         </form>
                     }
                     if (User.IsInRole("ROLE_3"))
                     {
-                        <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/periodista">Periodista</a>
-                         <form asp-action="Salir" method="post" id="logoutForm">
+                        <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/zonaPeriodista">Periodista</a>
+                        <form asp-action="Salir" asp-controller="Login" method="post" id="logoutForm">
                             <a class="btn btn-sm btn-outline-secondary" onclick="confirmarLogout()">Salir</a>
                          </form>
                        
                     }
                 }
-                @if (currentController == "Administracion" && currentAction == "ListadoUsuarios" || currentController == "Administracion" && currentAction == "EliminarUsuario" || currentController == "Administracion" && currentAction == "GuardarEdicion")
+                @if (currentController == "Administracion" && currentAction == "ListadoUsuarios" || currentController == "Administracion" && currentAction == "EliminarUsuario" || currentController == "Administracion" && currentAction == "GuardarEdicion" || currentController == "Periodista" && currentAction == "ZonaPeriodista")
                 {
                     <a class="btn btn-sm btn-outline-secondary me-3" href="/privada/menu">Volver</a>
-                    <form asp-action="Salir" method="post" id="logoutForm">
+                    <form asp-action="Salir" asp-controller="Login" method="post" id="logoutForm">
                         <a class="btn btn-sm btn-outline-secondary" onclick="confirmarLogout()">Salir</a>
                     </form>
                 }

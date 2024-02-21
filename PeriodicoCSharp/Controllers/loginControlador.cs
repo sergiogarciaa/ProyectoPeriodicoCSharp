@@ -177,7 +177,7 @@ public class LoginController : Controller
     {
         UsuarioDTO u = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
         ViewBag.UsuarioDTO = u;
-        ViewBag.Noticia = _noticia.buscarTodas();
+        ViewBag.Noticia = _noticia.buscar4Primeras();
         Console.WriteLine("Rol USUARIO" + u.Rol + u.NombreUsuario);
         Console.WriteLine("Ahora aqui");
         return View("~/Views/Home/menu.cshtml");
