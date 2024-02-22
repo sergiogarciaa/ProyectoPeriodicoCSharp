@@ -1705,3 +1705,374 @@
 22/02/2024 10:53:23 / Entrando en el método VerNoticia() de la clase HomeController
 22/02/2024 10:53:23 / Entrando al método buscarNoticiaPorIDDTO() en ImplementacionNoticia
 22/02/2024 10:53:23 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:55:08 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 10:55:08 / [Error ImplementacionNoticia - buscar4Primeras()] No password has been provided but the backend requires one (in SASL/SCRAM-SHA-256)
+22/02/2024 10:55:08 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 10:55:08 / [Error ImplementacionCategoria - BuscarTodos()] No password has been provided but the backend requires one (in SASL/SCRAM-SHA-256)
+22/02/2024 10:57:28 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 10:57:29 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 10:57:29 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:29 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:29 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:29 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:29 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:33 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 10:57:33 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 10:57:33 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:57:33 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:33 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:33 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:33 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:57:34 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 10:57:47 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 10:57:47 / Entrando al método usuarioToDao() en ConversionDaoImpl
+22/02/2024 10:57:47 / Generando token de seguridad
+22/02/2024 10:57:47 / Entrando al método EnviarEmailConfirmacion() en ImplementacionEmail
+22/02/2024 10:57:47 / [Error ImplementacionEmail - EnviarEmailConfirmacion()] Ha ocurrido un error al enviar el email! The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+22/02/2024 10:57:47 / [Error ImplementacionUsuario - Registrar()] Error al registrar usuario The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+22/02/2024 10:58:46 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 10:58:47 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 10:58:47 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 10:58:47 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:58:47 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:58:47 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:58:47 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 10:58:49 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 10:59:37 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 10:59:37 / Entrando al método usuarioToDao() en ConversionDaoImpl
+22/02/2024 10:59:37 / Generando token de seguridad
+22/02/2024 10:59:37 / Entrando al método EnviarEmailConfirmacion() en ImplementacionEmail
+22/02/2024 10:59:38 / [Error ImplementacionEmail - EnviarEmailConfirmacion()] Ha ocurrido un error al enviar el email! The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+22/02/2024 10:59:38 / [Error ImplementacionUsuario - Registrar()] Error al registrar usuario The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+22/02/2024 11:02:42 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:02:43 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:02:43 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:43 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:43 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:43 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:43 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:47 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:02:49 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:02:49 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:02:49 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:02:49 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:49 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:49 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:49 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:02:50 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:03:31 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 11:04:45 / Entrando al método usuarioToDao() en ConversionDaoImpl
+22/02/2024 11:04:59 / Generando token de seguridad
+22/02/2024 11:05:09 / Entrando al método EnviarEmailConfirmacion() en ImplementacionEmail
+22/02/2024 11:05:10 / [Error ImplementacionEmail - EnviarEmailConfirmacion()] Ha ocurrido un error al enviar el email! The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+22/02/2024 11:05:17 / [Error ImplementacionUsuario - Registrar()] Error al registrar usuario The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. For more information, go to
+22/02/2024 11:05:37 / [RegistrarPost] Error al procesar la solicitud: Object reference not set to an instance of an object.
+22/02/2024 11:08:52 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:08:53 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método noticiaToDto() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:08:53 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:08:53 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:08:53 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:08:53 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:08:53 / Entrando al método resumirNoticia() en ImplementacionNoticia
+22/02/2024 11:08:56 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:10:41 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 11:10:50 / Entrando al método usuarioToDao() en ConversionDaoImpl
+22/02/2024 11:10:53 / Generando token de seguridad
+22/02/2024 11:11:33 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:11:34 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:11:34 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:11:34 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:11:34 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:34 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:34 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:34 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:34 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:11:39 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:11:39 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:39 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:11:47 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:11:49 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:12:08 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 11:12:11 / Entrando al método usuarioToDao() en ConversionDaoImpl
+22/02/2024 11:12:12 / Generando token de seguridad
+22/02/2024 11:12:15 / Entrando al método EnviarEmailConfirmacion() en ImplementacionEmail
+22/02/2024 11:12:31 / [RegistrarPost] Registro del nuevo usuario exitoso.
+22/02/2024 11:17:17 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:17:18 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:17:18 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:17:18 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:17:18 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:17:18 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:17:18 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:17:18 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:17:18 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:17:26 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:17:35 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 11:17:36 / Entrando al método usuarioToDao() en ConversionDaoImpl
+22/02/2024 11:17:36 / Generando token de seguridad
+22/02/2024 11:17:36 / Entrando al método EnviarEmailConfirmacion() en ImplementacionEmail
+22/02/2024 11:17:40 / [RegistrarPost] Registro del nuevo usuario exitoso.
+22/02/2024 11:18:05 / Entrando al método ConfirmarCuenta() en ImplementacionUsuario
+22/02/2024 11:18:05 / [ConfirmarCuenta] Confirmación exitosa para el token: 263190ee92676a5cfb7514f343e15146150775a5f302d267824c172f8430
+22/02/2024 11:20:37 / Entrando al método ConfirmarCuenta() en ImplementacionUsuario
+22/02/2024 11:20:37 / La cuenta no existe o ya está confirmada
+22/02/2024 11:20:37 / [ConfirmarCuenta] Error al confirmar el email para el token: 263190ee92676a5cfb7514f343e15146150775a5f302d267824c172f8430
+22/02/2024 11:26:06 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:26:07 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:26:07 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:26:07 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:26:07 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:26:07 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:26:07 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:26:07 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:26:07 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:26:13 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:26:46 / Entrando al método Registrar() en ImplementacionUsuario
+22/02/2024 11:26:46 / [RegistrarPost] Intento de registro con email repetido.
+22/02/2024 11:27:43 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:27:44 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:27:44 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:27:44 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:27:44 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:27:44 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:27:44 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:27:44 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:27:44 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:27:45 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:30:55 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:30:56 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:30:56 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:30:56 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:30:56 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:30:56 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:30:56 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:30:56 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:30:56 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:30:58 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:31:16 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:31:16 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:31:16 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:31:16 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:31:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:31:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:31:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:31:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:31:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:31:17 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:32:10 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:32:11 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:32:11 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:32:11 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:32:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:32:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:32:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:32:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:32:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:32:12 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:34:24 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:34:28 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:34:34 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:34:48 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:35:32 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:37:16 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:37:47 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:37:48 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:37:48 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:37:48 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:37:48 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:37:48 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:37:48 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:37:48 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:37:48 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:38:24 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:39:05 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:39:06 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:39:06 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:39:06 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:39:06 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:39:06 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:39:06 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:39:06 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:39:06 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:39:07 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:40:07 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:40:15 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:40:16 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:40:16 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:40:16 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:40:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:40:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:40:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:40:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:40:16 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:40:17 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:42:21 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:43:56 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:44:14 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:44:15 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:44:15 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:44:15 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:44:15 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:44:15 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:44:15 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:44:15 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:44:15 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:44:17 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:45:22 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:45:23 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:45:23 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:45:23 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:45:23 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:23 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:23 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:23 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:23 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:25 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:45:43 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:45:53 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:45:54 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:45:54 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:45:54 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:45:54 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:54 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:54 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:54 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:54 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:45:55 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:46:25 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:46:28 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:46:34 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:46:35 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:46:35 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:46:35 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:46:35 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:46:35 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:46:35 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:46:35 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:46:35 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:46:36 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:47:21 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:47:50 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:47:51 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:47:51 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:47:51 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:47:51 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:47:51 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:47:51 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:47:51 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:47:51 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:47:52 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:49:02 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:49:05 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:49:10 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:49:11 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:49:11 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:49:11 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:49:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:49:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:49:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:49:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:49:11 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:49:17 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:51:24 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:51:45 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:52:02 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:52:03 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:52:03 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:52:03 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:52:03 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:52:03 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:52:03 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:52:03 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:52:03 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:52:05 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:52:29 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:53:32 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:53:35 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:53:36 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:53:36 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:53:36 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:53:36 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:53:36 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:53:36 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:53:36 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:53:36 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:53:37 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:54:19 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:54:25 / Entrando al método buscar4Primeras() en ImplementacionNoticia
+22/02/2024 11:54:25 / Entrando al método listaNoticiasToDto() en ConversionDTOImpl
+22/02/2024 11:54:25 / Entrando al método BuscarTodas() en ImplementacionCategoria
+22/02/2024 11:54:25 / Entrando al método listaCategoriaToDto() en ConversionDTOImpl
+22/02/2024 11:54:25 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:54:25 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:54:25 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:54:25 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:54:25 / Entrando al método categoriaToDTO() en ConversionDTOImpl
+22/02/2024 11:54:27 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.
+22/02/2024 11:54:45 / [RegistrarGet] Se ha mostrado la vista de registro correctamente.

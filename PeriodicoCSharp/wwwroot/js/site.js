@@ -1,22 +1,27 @@
-﻿function revisarContraseña() {
-    var contraseña = document.getElementById('claveUsuario').value;
-    var confContraseña = document.getElementById('confirmarClaveUsuario').value;
-    var mensajeContraseña = document.getElementById('mensajeContrasenya');
+﻿function validarFormulario() { 
 
-    if (contraseña === "" && confContraseña === "") {
-        mensajeContraseña.textContent = 'No puede dejar campos vacíos';
-        document.getElementById("btnRegistro").disabled = true;//deshabilita el boton		
-    } else if (contraseña === confContraseña) {
-        mensajeContraseña.textContent = 'Las contraseñas coinciden';
-        mensajeContraseña.style.color = 'green';
-        document.getElementById("btnRegistro").disabled = false;//habilita el boton
+    var dniInput = document.getElementById('DniUsuario').value;
+    var dniRegex = /^[0-9]{8}[a-zA-Z]$/; // Expresión regular para 8 números seguidos de una letra (mayúscula o minúscula)
+    var DNIok;
+    var clave = document.getElementById('claveUsuario').value;
+    var confirmarClave = document.getElementById('confirmarClaveUsuario').value;
+
+    if (dniRegex.test(dniInput)) {
+        DNIok = true;
+        
     } else {
-        mensajeContraseña.textContent = 'Las contraseñas no coinciden';
-        mensajeContraseña.style.color = 'red';
-        document.getElementById("btnRegistro").disabled = true;//deshabilita el boton
+        DNIok = false;
     }
-}
 
+    if (clave === confirmarClave && DNIok && clave && confirmarClave) {
+        document.getElementById("btnRegistro").disabled = false; //habilita el boton
+    }
+    else {
+        document.getElementById("btnRegistro").disabled = true; //habilita el boton
+    }
+    
+   
+}
 function mostrarNotificacion(titulo, mensaje, tipo) {
     Swal.fire({
         title: titulo,
@@ -89,7 +94,7 @@ function confirmarEliminar(event) {
         if (confirmado) {
             window.location.href = 'http://localhost:5105/privada/eliminar/' + idUsuario;
         }
-        
+
     });
 }
 
@@ -137,7 +142,7 @@ function confirmarRedireccion(event) {
                 return result.isConfirmed;
             });
         }
-       else {
+        else {
             window.location.href = 'http://localhost:8080/auth/' + idCategoria + '/' + idNoticia;
         }
     });

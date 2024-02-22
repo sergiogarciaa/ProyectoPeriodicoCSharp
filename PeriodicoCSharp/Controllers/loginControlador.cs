@@ -81,7 +81,7 @@ public class LoginController : Controller
         {
             UsuarioDTO nuevoUsuario = _usuarioServicio.Registrar(usuarioDTO);
 
-            if (nuevoUsuario.EmailUsuario == "EmailNoConfirmado")
+            if (usuarioDTO.EmailUsuario == "EmailNoConfirmado")
             {
                 ViewData["EmailNoConfirmado"] = "Ya existe un usuario registrado con ese email pero con la cuenta sin verificar";
 
@@ -180,7 +180,8 @@ public class LoginController : Controller
     /// </summary>
     /// <param name="token">Token de confirmación de la cuenta de usuario</param>
     /// <returns>La vista de inicio de sesión con un mensaje sobre el estado de la confirmación</returns>
-    [HttpGet("/auth/confirmacionCorreo")]
+    [HttpGet]
+    [Route("/auth/confirmacionCorreo")]
     public IActionResult ConfirmarCuenta([FromQuery] string token)
     {
         try
@@ -202,7 +203,7 @@ public class LoginController : Controller
                 Log.escribirEnFicheroLog("[ConfirmarCuenta] Error al confirmar el email para el token: " + token);
             }
 
-            return View("login");
+            return View("~/Views/Home/login.cshtml");
         }
         catch (Exception e)
         {
@@ -212,7 +213,7 @@ public class LoginController : Controller
             // Registro de error en el log
             Log.escribirEnFicheroLog("[ConfirmarCuenta] Error al procesar la solicitud para el token: " + token + ". Detalles del error: " + e.Message);
 
-            return View("login");
+            return View("~/Views/Home/login.cshtml");
         }
     }
 

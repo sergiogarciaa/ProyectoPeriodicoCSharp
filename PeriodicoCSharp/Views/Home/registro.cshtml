@@ -24,7 +24,7 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-address-card"></span>
-                <input type="text" id="DniUsuario" name="DniUsuario" class="form-control" placeholder="DNI" required />
+                <input type="text" id="DniUsuario" name="DniUsuario" class="form-control" placeholder="DNI" required oninput="validarFormulario()" />
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-phone"></span>
@@ -36,13 +36,13 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-key"></span>
-                <input type="password" id="ClaveUsuario" name="ClaveUsuario" class="form-control" placeholder="Escribe tu contraseña" required oninput="revisarContraseña()" />
+                <input type="password" id="claveUsuario" name="ClaveUsuario" class="form-control" placeholder="Escribe tu contraseña" required oninput="validarFormulario()" />
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-key"></span>
-                <input type="password" id="confirmarPassword" class="form-control" placeholder="Repite tu contraseña" required oninput="revisarContraseña()" />
+                <input type="password" id="confirmarClaveUsuario" class="form-control" placeholder="Repite tu contraseña" required oninput="validarFormulario()" />
             </div>
-            <button type="submit" id="btnRegistro" class="btn btn-primary mt-5"><i class="bi bi-person-add fs-5"> Crear cuenta</i></button>
+            <button type="submit" id="btnRegistro" class="btn btn-primary mt-5" oninput="validarFormulario()" disabled><i class="bi bi-person-add fs-5"> Crear cuenta</i></button>
         </form>
     </div>
 </div>

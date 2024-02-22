@@ -31,7 +31,7 @@ namespace PeriodicoCSharp.Servicios
             {
                 Log.escribirEnFicheroLog("Entrando al método EnviarEmailConfirmacion() en ImplementacionEmail");
 
-                string urlDominio = "https://localhost:5105";
+                string urlDominio = "http://localhost:5105";
                 string urlDeRecuperacion = $"{urlDominio}/auth/confirmacionCorreo/?token={token}";
 
                 string htmlContent = $@"<!DOCTYPE html>
@@ -41,7 +41,7 @@ namespace PeriodicoCSharp.Servicios
         <h1 style='color:rgb(192, 192, 192)'>Confirmar cuenta - <b style='color:#285845; text-decoration: underline'>La Revista</b></h1>
         <p style='margin-bottom:25px'>Estimad@&nbsp;<b>{nombreUsuario}</b>:</p> <p style='margin-bottom:25px'>
         Bienvenid@ al Periodico La Revista. Para confirmar tu cuenta, haz click en el botón:</p>
-        <a style='padding: 10px 15px; border-radius: 10px; background-color: #5993d3; color: white; text-decoration: none' href='{urlDeRecuperacion}' target='_blank'>Confirmar cuenta</a>
+        <a style='padding: 10px 15px;border-radius: 20px; background-color: #285845; color: white; text-decoration: none' href='{urlDeRecuperacion}' target='_blank'>Confirmar cuenta</a>
         <p style='margin-top:25px'>¡Ahora somos uno más!.</p> </div> </body> </html>";
 
                 MailMessage mensajeDelCorreo = new MailMessage("recuperacionpass12@gmail.com", emailDestino, "CONFIRMAR EMAIL", htmlContent)
