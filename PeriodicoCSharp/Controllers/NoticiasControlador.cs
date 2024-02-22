@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using DAL.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
@@ -12,13 +13,15 @@ namespace PeriodicoCSharp.Controllers
         private readonly ConversionDao _toDao;
         private readonly InterfazNoticia _noticia;
         private readonly InterfazCategoria _categoria;
-        public NoticiasController(UsuarioServicio usuarioServicio, ConversionDTO toDto, InterfazNoticia interfazNoticia, InterfazCategoria categoria, ConversionDao toDao)
+        private readonly PeriodicoContext _contexto;
+        public NoticiasController(UsuarioServicio usuarioServicio, ConversionDTO toDto, InterfazNoticia interfazNoticia, InterfazCategoria categoria, ConversionDao toDao, PeriodicoContext context)
         {
             _usuarioServicio = usuarioServicio;
             _toDto = toDto;
             _toDao = toDao;
             _noticia = interfazNoticia;
             _categoria = categoria;
+            _contexto = context;
         }
 
         [HttpGet]
@@ -76,6 +79,12 @@ namespace PeriodicoCSharp.Controllers
                     // Si la noticia no se encuentra, puedes redirigir a una página de error o hacer lo que desees
                     return RedirectToAction("Index", "Home");
                 }
+
+                // Obtener la lista de comentarios para esta noticia
+                var comentarios = _contexto.Comentarios.Where(c => c.Id_Noticia == idNoticia).ToList();
+
+                // Pasar la lista de comentarios a la vista usando ViewBag
+                ViewBag.Comentarios = comentarios;
 
                 // Pasar la noticia al modelo y mostrar la vista con la noticia completa
                 return View("~/Views/Home/verNoticia.cshtml", noticia);

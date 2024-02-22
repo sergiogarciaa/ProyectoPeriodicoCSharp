@@ -34,21 +34,6 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "comentarios",
-                schema: "prdc_schema",
-                columns: table => new
-                {
-                    id_comentario = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    desc_comentario = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
-                    fch_publicacion_comentario = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("comentarios_pkey", x => x.id_comentario);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "usuarios",
                 schema: "prdc_schema_usuarios",
                 columns: table => new
@@ -107,27 +92,33 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "usuario_comentarios",
+                name: "comentarios",
                 schema: "prdc_schema",
                 columns: table => new
                 {
-                    id_comentario = table.Column<long>(type: "bigint", nullable: false),
-                    id_usuario = table.Column<long>(type: "bigint", nullable: false)
+                    id_comentario = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    desc_comentario = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
+                    fch_publicacion_comentario = table.Column<string>(type: "character varying(255)", maxLength: 255, nullable: true),
+                    IdUsuario = table.Column<long>(type: "bigint", nullable: false),
+                    Id_Noticia = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("comentarios_pkey", x => x.id_comentario);
                     table.ForeignKey(
-                        name: "fkejjm7tjlrrwb2ls7wa4awngf4",
-                        column: x => x.id_usuario,
+                        name: "FK_comentarios_usuarios_IdUsuario",
+                        column: x => x.IdUsuario,
                         principalSchema: "prdc_schema_usuarios",
                         principalTable: "usuarios",
                         principalColumn: "id_usuario");
                     table.ForeignKey(
-                        name: "fks60gdyncnkxtpby9t6q69cfva",
-                        column: x => x.id_comentario,
+                        name: "fk_comentario_noticia",
+                        column: x => x.Id_Noticia,
                         principalSchema: "prdc_schema",
-                        principalTable: "comentarios",
-                        principalColumn: "id_comentario");
+                        principalTable: "noticias",
+                        principalColumn: "id_noticia",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -153,6 +144,42 @@ namespace DAL.Migrations
                         principalTable: "noticias",
                         principalColumn: "id_noticia");
                 });
+
+            migrationBuilder.CreateTable(
+                name: "usuario_comentarios",
+                schema: "prdc_schema",
+                columns: table => new
+                {
+                    id_comentario = table.Column<long>(type: "bigint", nullable: false),
+                    id_usuario = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.ForeignKey(
+                        name: "fkejjm7tjlrrwb2ls7wa4awngf4",
+                        column: x => x.id_usuario,
+                        principalSchema: "prdc_schema_usuarios",
+                        principalTable: "usuarios",
+                        principalColumn: "id_usuario");
+                    table.ForeignKey(
+                        name: "fks60gdyncnkxtpby9t6q69cfva",
+                        column: x => x.id_comentario,
+                        principalSchema: "prdc_schema",
+                        principalTable: "comentarios",
+                        principalColumn: "id_comentario");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comentarios_Id_Noticia",
+                schema: "prdc_schema",
+                table: "comentarios",
+                column: "Id_Noticia");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_comentarios_IdUsuario",
+                schema: "prdc_schema",
+                table: "comentarios",
+                column: "IdUsuario");
 
             migrationBuilder.CreateIndex(
                 name: "IX_noticia_comentarios_id_comentario",
@@ -217,11 +244,11 @@ namespace DAL.Migrations
                 schema: "prdc_schema");
 
             migrationBuilder.DropTable(
-                name: "noticias",
+                name: "comentarios",
                 schema: "prdc_schema");
 
             migrationBuilder.DropTable(
-                name: "comentarios",
+                name: "noticias",
                 schema: "prdc_schema");
 
             migrationBuilder.DropTable(

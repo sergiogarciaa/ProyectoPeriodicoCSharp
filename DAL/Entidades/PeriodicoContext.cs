@@ -29,7 +29,7 @@ public partial class PeriodicoContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=periodico;UserId=postgres;Password=Mitobyy12.");
+        => optionsBuilder.UseNpgsql("Server=localhost;Port=5432;Database=periodicoC;UserId=postgres;Password=Mitobyy12.");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -51,8 +51,18 @@ public partial class PeriodicoContext : DbContext
         modelBuilder.Entity<Comentario>(entity =>
         {
             entity.HasKey(e => e.IdComentario).HasName("comentarios_pkey");
-
             entity.ToTable("comentarios", "prdc_schema");
+
+            modelBuilder.Entity<Comentario>()
+                .HasOne(c => c.IdNoticiaNavigation) // Un comentario pertenece a una noticia
+                .WithMany(n => n.Comentarios) // Una noticia puede tener varios comentarios
+                .HasForeignKey(c => c.Id_Noticia) // La clave foránea en Comentario
+                .OnDelete(DeleteBehavior.Cascade); // Opcional: establecer la acción de eliminación en caso de que se elimine una noticia
+            modelBuilder.Entity<Comentario>()
+                .HasOne(c => c.Usuario) // Un comentario pertenece a un usuario
+                .WithMany(u => u.Comentarios) // Un usuario puede tener varios comentarios
+                .HasForeignKey(c => c.IdUsuario) // La clave foránea en Comentario
+                .OnDelete(DeleteBehavior.ClientSetNull); // Opcional: establecer la acción de eliminación en caso de que se elimine un usuario
 
             entity.Property(e => e.IdComentario).HasColumnName("id_comentario");
             entity.Property(e => e.DescComentario)
@@ -68,6 +78,12 @@ public partial class PeriodicoContext : DbContext
             entity.HasKey(e => e.IdNoticia).HasName("noticias_pkey");
 
             entity.ToTable("noticias", "prdc_schema");
+
+            // Configuración de la relación con Comentario
+            entity.HasMany(n => n.Comentarios)
+                  .WithOne(c => c.IdNoticiaNavigation)
+                  .HasForeignKey(c => c.Id_Noticia)
+                  .HasConstraintName("fk_comentario_noticia");
 
             entity.Property(e => e.IdNoticia).HasColumnName("id_noticia");
             entity.Property(e => e.DescNoticia)

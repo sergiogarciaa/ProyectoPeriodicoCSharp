@@ -32,6 +32,7 @@ public partial class Usuario
     public string? TokenRecuperacion { get; set; }
 
     public string? Rol { get; set; }
+    public virtual ICollection<Comentario> Comentarios { get; set; }
 
     public virtual ICollection<Noticia> Noticia { get; set; } = new List<Noticia>();
 }

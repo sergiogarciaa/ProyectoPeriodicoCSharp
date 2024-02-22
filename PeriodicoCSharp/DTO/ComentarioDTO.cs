@@ -1,4 +1,6 @@
-﻿namespace PeriodicoCSharp.DTO
+﻿using DAL.Entidades;
+
+namespace PeriodicoCSharp.DTO
 {
     public class ComentarioDTO
     {

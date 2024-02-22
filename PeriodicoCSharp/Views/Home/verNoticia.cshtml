@@ -14,3 +14,25 @@
 <div class="container">
     <p>Publicado el: <span>@Model.FchPublicacion</span></p>
 </div>
+
+<div class="container pt-3">
+    <!-- Formulario para agregar un nuevo comentario -->
+    <form id="formulario-comentario" method="post" asp-action="AgregarComentario" asp-controller="Comentario" asp-route-idNoticia="@Model.IdNoticia" class="d-flex pt-3 pb-2">
+        <textarea name="DescComentario" rows="2" cols="50" required></textarea>
+        <button type="submit">Enviar Comentario</button>
+    </form>
+</div>
+@if (ViewBag.Comentarios != null)
+{
+    <h3>Comentarios</h3>
+    <ul>
+        @foreach (var comentario in ViewBag.Comentarios)
+        {
+            <li>@comentario.DescComentario - @comentario.FchPublicacionComentario</li>
+        }
+    </ul>
+}
+else
+{
+    <p>No hay comentarios para esta noticia.</p>
+}

@@ -67,8 +67,18 @@ namespace DAL.Migrations
                         .HasColumnType("character varying(255)")
                         .HasColumnName("fch_publicacion_comentario");
 
+                    b.Property<long>("IdUsuario")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("Id_Noticia")
+                        .HasColumnType("bigint");
+
                     b.HasKey("IdComentario")
                         .HasName("comentarios_pkey");
+
+                    b.HasIndex("IdUsuario");
+
+                    b.HasIndex("Id_Noticia");
 
                     b.ToTable("comentarios", "prdc_schema");
                 });
@@ -245,6 +255,25 @@ namespace DAL.Migrations
                     b.ToTable("usuario_comentarios", "prdc_schema");
                 });
 
+            modelBuilder.Entity("DAL.Entidades.Comentario", b =>
+                {
+                    b.HasOne("DAL.Entidades.Usuario", "Usuario")
+                        .WithMany("Comentarios")
+                        .HasForeignKey("IdUsuario")
+                        .IsRequired();
+
+                    b.HasOne("DAL.Entidades.Noticia", "IdNoticiaNavigation")
+                        .WithMany("Comentarios")
+                        .HasForeignKey("Id_Noticia")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_comentario_noticia");
+
+                    b.Navigation("IdNoticiaNavigation");
+
+                    b.Navigation("Usuario");
+                });
+
             modelBuilder.Entity("DAL.Entidades.Noticia", b =>
                 {
                     b.HasOne("DAL.Entidades.Categoria", "IdCategoriaNoticiaNavigation")
@@ -307,8 +336,15 @@ namespace DAL.Migrations
                     b.Navigation("Noticia");
                 });
 
+            modelBuilder.Entity("DAL.Entidades.Noticia", b =>
+                {
+                    b.Navigation("Comentarios");
+                });
+
             modelBuilder.Entity("DAL.Entidades.Usuario", b =>
                 {
+                    b.Navigation("Comentarios");
+
                     b.Navigation("Noticia");
                 });
 #pragma warning restore 612, 618
