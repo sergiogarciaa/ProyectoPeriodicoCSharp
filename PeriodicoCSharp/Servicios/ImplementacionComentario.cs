@@ -1,4 +1,7 @@
 ﻿using DAL.Entidades;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -6,15 +9,23 @@ namespace PeriodicoCSharp.Servicios
     {
         public List<Comentario> obtenerComentariosPorNoticia(long idNoticia)
         {
-            using (var contexto = new PeriodicoContext())
+            try
             {
-                // Consulta para obtener los comentarios asociados a la noticia
-                var comentarios = contexto.NoticiaComentarios
-                    .Where(nc => nc.IdNoticia == idNoticia)
-                    .Select(nc => nc.IdComentarioNavigation)
-                    .ToList();
+                using (var contexto = new PeriodicoContext())
+                {
+                    // Consulta para obtener los comentarios asociados a la noticia
+                    var comentarios = contexto.NoticiaComentarios
+                        .Where(nc => nc.IdNoticia == idNoticia)
+                        .Select(nc => nc.IdComentarioNavigation)
+                        .ToList();
 
-                return comentarios;
+                    return comentarios;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionComentario - obtenerComentariosPorNoticia()] {e.Message}");
+                throw; 
             }
         }
     }

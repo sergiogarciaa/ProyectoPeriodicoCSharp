@@ -1,7 +1,11 @@
 ﻿using DAL.Entidades;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using PeriodicoCSharp.DTO;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -10,7 +14,6 @@ namespace PeriodicoCSharp.Servicios
         private readonly PeriodicoContext _contexto;
         private readonly ConversionDao _toDao;
         private readonly ConversionDTO _toDto;
-
 
         public ImplementacionNoticia(PeriodicoContext contexto, ConversionDao toDao, ConversionDTO toDto)
         {
@@ -23,18 +26,16 @@ namespace PeriodicoCSharp.Servicios
         {
             try
             {
-                // Obtener las 4 noticias más recientes ordenadas por fecha de publicación descendente
                 var noticiasRecientes = _contexto.Noticias
                     .OrderByDescending(n => n.FchPublicacion)
                     .Take(4)
                     .ToList();
 
-                // Convertir las noticias a DTOs
                 return _toDto.listaNoticiasToDto(noticiasRecientes);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarCuatroMasRecientes()] {e.Message}");
+                Console.WriteLine($"[Error ImplementacionNoticia - buscar4Primeras()] {e.Message}");
                 return new List<NoticiaDTO>();
             }
         }
@@ -43,12 +44,11 @@ namespace PeriodicoCSharp.Servicios
         {
             try
             {
-                Noticia? noticia = _contexto.Noticias.FirstOrDefault(n => n.IdNoticia == id);
-                return noticia;
+                return _contexto.Noticias.FirstOrDefault(n => n.IdNoticia == id);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionNoticia - BuscarPorId()] {e.Message}");
+                Console.WriteLine($"[Error ImplementacionNoticia - buscarNoticiaPorID()] {e.Message}");
                 return null;
             }
         }
@@ -57,29 +57,31 @@ namespace PeriodicoCSharp.Servicios
         {
             try
             {
-                Noticia? noticia = _contexto.Noticias.FirstOrDefault(n => n.IdNoticia == id);
-                NoticiaDTO noticiaDTO = _toDto.noticiaToDto(noticia);
-                return noticiaDTO;
+                var noticia = _contexto.Noticias.FirstOrDefault(n => n.IdNoticia == id);
+                return _toDto.noticiaToDto(noticia);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionNoticia - BuscarPorId()] {e.Message}");
+                Console.WriteLine($"[Error ImplementacionNoticia - buscarNoticiaPorIDDTO()] {e.Message}");
                 return null;
             }
         }
 
         public List<NoticiaDTO> buscarPorCategoria(long idCategoria)
         {
-            // Utilizando LINQ para buscar noticias por categoría
-            var noticias = (from n in _contexto.Noticias
-                            where n.IdCategoriaNoticia == idCategoria
-                            select n)
-                           .ToList();
+            try
+            {
+                var noticias = _contexto.Noticias
+                    .Where(n => n.IdCategoriaNoticia == idCategoria)
+                    .ToList();
 
-            // Mapeo a DTO (Data Transfer Object)
-            var noticiasDto = noticias.Select(n => _toDto.noticiaToDto(n)).ToList();
-
-            return noticiasDto;
+                return noticias.Select(n => _toDto.noticiaToDto(n)).ToList();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionNoticia - buscarPorCategoria()] {e.Message}");
+                return new List<NoticiaDTO>();
+            }
         }
 
         public List<NoticiaDTO> buscarTodas()
@@ -90,72 +92,76 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarTodos()] {e.Message}");
+                Console.WriteLine($"[Error ImplementacionNoticia - buscarTodas()] {e.Message}");
                 return new List<NoticiaDTO>();
             }
         }
 
         public string ConvertToBase64(IFormFile file)
         {
-            using (var memoryStream = new MemoryStream())
+            try
             {
-                // Copiar los bytes del archivo al flujo de memoria
-                file.CopyTo(memoryStream);
-
-                // Obtener los bytes del archivo
-                var fileBytes = memoryStream.ToArray();
-
-                // Convertir los bytes a base64
-                return Convert.ToBase64String(fileBytes);
+                using (var memoryStream = new MemoryStream())
+                {
+                    file.CopyTo(memoryStream);
+                    return Convert.ToBase64String(memoryStream.ToArray());
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionNoticia - ConvertToBase64()] {e.Message}");
+                return string.Empty;
             }
         }
 
         public byte[] convertToByteArray(string base64String)
         {
-            if (!string.IsNullOrEmpty(base64String))
+            try
             {
                 return Convert.FromBase64String(base64String);
             }
-            return null;
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionNoticia - convertToByteArray()] {e.Message}");
+                return null;
+            }
         }
 
         public void GuardarNoticia(Noticia noticia)
         {
-            
-            _contexto.Noticias.Add(noticia);
-            _contexto.SaveChanges();
+            try
+            {
+                _contexto.Noticias.Add(noticia);
+                _contexto.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"[Error ImplementacionNoticia - GuardarNoticia()] {e.Message}");
+            }
         }
 
         public Noticia obtenerNoticiaMasReciente()
         {
-            // Recupera todas las noticias
-            List<Noticia> noticias = _contexto.Noticias.ToList();
-
-            // Ordena las noticias por fecha de publicación en orden descendente
-            noticias = noticias.OrderByDescending(n => n.FchPublicacion).ToList();
-            // Verifica si hay noticias
-            if (noticias.Any())
+            try
             {
-                // La primera noticia en la lista será la más reciente debido al ordenamiento
-                return noticias[0];
+                return _contexto.Noticias.OrderByDescending(n => n.FchPublicacion).FirstOrDefault();
             }
-            else
+            catch (Exception e)
             {
-                // Si no hay noticias, devuelve null o maneja el caso según tus necesidades
+                Console.WriteLine($"[Error ImplementacionNoticia - obtenerNoticiaMasReciente()] {e.Message}");
                 return null;
             }
         }
 
         public string resumirNoticia(string texto)
         {
-            if (texto != null && texto.Length >= 200)
+            try
             {
-                // Subcadena que contiene los primeros 35 caracteres
-                return texto.Substring(0, 200) + "...";
+                return texto?.Length > 200 ? texto.Substring(0, 200) + "..." : texto;
             }
-            else
+            catch (Exception e)
             {
-                // Si el texto tiene menos de 50 caracteres o es nulo, devuelve el texto original
+                Console.WriteLine($"[Error ImplementacionNoticia - resumirNoticia()] {e.Message}");
                 return texto;
             }
         }

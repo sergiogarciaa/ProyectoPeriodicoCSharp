@@ -1,5 +1,7 @@
 ﻿using DAL.Entidades;
 using PeriodicoCSharp.DTO;
+using System;
+using System.Collections.Generic;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -18,8 +20,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR UsuarioToDtoImpl - ListaUsuarioToDto()] - Error al convertir lista de usuario DAO a lista de usuarioDTO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaUsuarioToDto()] - Error al convertir lista de Usuario DAO a lista de UsuarioDTO: " + e);
+                throw; 
             }
         }
 
@@ -44,8 +46,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR UsuarioToDtoImpl - usuarioToDto()] - Error al convertir usuario DAO a usuarioDTO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - usuarioToDto()] - Error al convertir Usuario DAO a UsuarioDTO: " + e);
+                throw; 
             }
         }
 
@@ -59,6 +61,7 @@ namespace PeriodicoCSharp.Servicios
                 dto.DescNoticia = noticia.DescNoticia;
                 dto.RequiereSuscripcion = noticia.RequiereSuscripcion;
                 dto.FchPublicacion = noticia.FchPublicacion;
+                dto.ImagenNoticia = noticia.ImagenNoticia;
                 dto.IdCategoriaNoticia = noticia.IdCategoriaNoticia;
                 dto.IdUsuarioNoticia = noticia.IdUsuarioNoticia;
 
@@ -66,8 +69,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("[ERROR ImplementacionNoticiaToDto - noticiaToDto()] - Error al convertir noticia DAO a noticiaDTO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - noticiaToDto()] - Error al convertir Noticia DAO a NoticiaDTO: " + e);
+                throw; 
             }
         }
 
@@ -84,8 +87,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR UsuarioToDtoImpl - ListaUsuarioToDto()] - Error al convertir lista de usuario DAO a lista de usuarioDTO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaNoticiasToDto()] - Error al convertir lista de Noticia DAO a lista de NoticiaDTO: " + e);
+                throw; 
             }
         }
 
@@ -103,8 +106,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("[ERROR ImplementacionCategoriaToDto - categoriaToDto()] - Error al convertir noticia DAO a categoriaDTO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - categoriaToDTO()] - Error al convertir Categoria DAO a CategoriaDTO: " + e);
+                throw; 
             }
         }
 
@@ -121,8 +124,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaCategoriaToDto()] - Error al convertir lista de categoria DAO a lista de categoriaDTO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaCategoriaToDto()] - Error al convertir lista de Categoria DAO a lista de CategoriaDTO: " + e);
+                throw; 
             }
         }
     }

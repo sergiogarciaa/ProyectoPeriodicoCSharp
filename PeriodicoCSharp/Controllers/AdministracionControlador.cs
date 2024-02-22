@@ -13,6 +13,13 @@ namespace PeriodicoCSharp.Controllers
             _usuarioServicio = usuarioServicio;
         }
 
+        /// <summary>
+        /// Método para mostrar el listado de usuarios en la vista de administración.
+        /// </summary>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Devuelve una vista que muestra el listado de todos los usuarios registrados en el sistema.
+        /// </remarks>
         [Authorize(Roles = "ROLE_4")]
         [HttpGet]
         [Route("/privada/administracion")]
@@ -33,11 +40,14 @@ namespace PeriodicoCSharp.Controllers
                 return View("~/Views/Home/menu.cshtml");
             }
         }
-
         /// <summary>
-        /// Elimina un usuario con el ID proporcionado y redirige a la vista de administración de usuarios con el resultado de la eliminación.
+        /// Método para eliminar un usuario por su ID.
         /// </summary>
         /// <param name="id">ID del usuario a eliminar.</param>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Elimina un usuario por su ID y redirige a la vista de administración de usuarios con el resultado de la eliminación.
+        /// </remarks>
         [Authorize(Roles = "ROLE_4")]
         [HttpGet]
         [Route("/privada/eliminar/{id}")]
@@ -72,13 +82,21 @@ namespace PeriodicoCSharp.Controllers
             }
         }
 
+        /// <summary>
+        /// Método para editar un usuario por su ID.
+        /// </summary>
+        /// <param name="id">ID del usuario a editar.</param>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Obtiene un usuario por su ID y muestra el formulario de edición con los detalles del usuario.
+        /// </remarks>
         [Authorize(Roles = "ROLE_4")]
         [HttpGet]
         [Route("/privada/editar/{id}")]
         public IActionResult Editar(long id)
         {
             try
-            { 
+            {
                 UsuarioDTO usuarioDTO = _usuarioServicio.BuscarDtoPorId(id);
 
                 return View("~/Views/Home/edicion.cshtml", usuarioDTO);
@@ -91,6 +109,19 @@ namespace PeriodicoCSharp.Controllers
             }
         }
 
+        /// <summary>
+        /// Método para guardar los cambios realizados en la edición de un usuario.
+        /// </summary>
+        /// <param name="id">ID del usuario.</param>
+        /// <param name="nombre">Nuevo nombre del usuario.</param>
+        /// <param name="apellidos">Nuevos apellidos del usuario.</param>
+        /// <param name="dni">Nuevo DNI del usuario.</param>
+        /// <param name="telefono">Nuevo teléfono del usuario.</param>
+        /// <param name="rol">Nuevo rol del usuario.</param>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Guarda los cambios realizados en un usuario y redirige a la vista de administración de usuarios con el resultado de la edición.
+        /// </remarks>
         [Authorize(Roles = "ROLE_4")]
         [HttpPost]
         [Route("/privada/confirmarEdicion")]
@@ -120,5 +151,6 @@ namespace PeriodicoCSharp.Controllers
                 return View("~/Views/Home/menu.cshtml");
             }
         }
+
     }
 }

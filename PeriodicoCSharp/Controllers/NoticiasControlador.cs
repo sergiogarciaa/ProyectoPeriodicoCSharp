@@ -14,6 +14,7 @@ namespace PeriodicoCSharp.Controllers
         private readonly InterfazNoticia _noticia;
         private readonly InterfazCategoria _categoria;
         private readonly PeriodicoContext _contexto;
+
         public NoticiasController(UsuarioServicio usuarioServicio, ConversionDTO toDto, InterfazNoticia interfazNoticia, InterfazCategoria categoria, ConversionDao toDao, PeriodicoContext context)
         {
             _usuarioServicio = usuarioServicio;
@@ -24,6 +25,11 @@ namespace PeriodicoCSharp.Controllers
             _contexto = context;
         }
 
+        /// <summary>
+        /// Método HTTP GET de la url /privada/ver/{idCategoria} para ver noticias de una categoría específica.
+        /// </summary>
+        /// <param name="idCategoria">ID de la categoría de las noticias a mostrar</param>
+        /// <returns>La vista con las noticias de la categoría especificada</returns>
         [HttpGet]
         [Route("/privada/ver/{idCategoria}")]
         [Authorize]
@@ -65,6 +71,11 @@ namespace PeriodicoCSharp.Controllers
             }
         }
 
+        /// <summary>
+        /// Método HTTP GET para ver una noticia específica por su ID.
+        /// </summary>
+        /// <param name="idNoticia">ID de la noticia a visualizar</param>
+        /// <returns>La vista con la noticia específica y sus comentarios</returns>
         [HttpGet]
         [Route("/noticias/{idNoticia}")]
         public IActionResult VerNoticia(int idNoticia)
@@ -85,6 +96,7 @@ namespace PeriodicoCSharp.Controllers
 
                 // Pasar la lista de comentarios a la vista usando ViewBag
                 ViewBag.Comentarios = comentarios;
+                ViewBag.Noticia = noticia;
 
                 // Pasar la noticia al modelo y mostrar la vista con la noticia completa
                 return View("~/Views/Home/verNoticia.cshtml", noticia);

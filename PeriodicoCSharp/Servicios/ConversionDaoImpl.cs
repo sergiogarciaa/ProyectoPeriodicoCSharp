@@ -1,11 +1,12 @@
 ﻿using DAL.Entidades;
 using PeriodicoCSharp.DTO;
+using System;
+using System.Collections.Generic;
 
 namespace PeriodicoCSharp.Servicios
 {
     public class ConversionDaoImpl : ConversionDao
     {
-
         public Noticia noticiaToDao(NoticiaDTO noticiaDTO, Usuario usuario, Categoria categoria)
         {
             try
@@ -21,12 +22,11 @@ namespace PeriodicoCSharp.Servicios
                 noticiaToDao.IdCategoriaNoticiaNavigation = categoria;
 
                 return noticiaToDao;
-
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR UsuarioToDaoImpl - toUsuarioDao()] - Al convertir usuarioDTO a usuarioDAO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDaoImpl - noticiaToDao()] - Error al convertir NoticiaDTO a NoticiaDAO: " + e);
+                throw; 
             }
         }
 
@@ -45,8 +45,8 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR UsuarioToDaoImpl - toListUsuarioDao()] - Al convertir lista de usuarioDTO a lista de usuarioDAO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDaoImpl - listUsuarioToDao()] - Error al convertir lista de UsuarioDTO a lista de UsuarioDAO: " + e);
+                throw; 
             }
         }
 
@@ -67,12 +67,11 @@ namespace PeriodicoCSharp.Servicios
                 usuarioDao.CuentaConfirmada = usuarioDTO.CuentaConfirmada;
 
                 return usuarioDao;
-
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR UsuarioToDaoImpl - toUsuarioDao()] - Al convertir usuarioDTO a usuarioDAO (return null): " + e);
-                return null;
+                Console.WriteLine("\n[ERROR ConversionDaoImpl - usuarioToDao()] - Error al convertir UsuarioDTO a UsuarioDAO: " + e);
+                throw; 
             }
         }
     }

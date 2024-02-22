@@ -20,6 +20,15 @@ namespace PeriodicoCSharp.Controllers
             _contexto = contexto;
         }
 
+        /// <summary>
+        /// Método para agregar un comentario a una noticia.
+        /// </summary>
+        /// <param name="idNoticia">ID de la noticia a la que se agrega el comentario.</param>
+        /// <param name="comentarioDTO">DTO del comentario a agregar.</param>
+        /// <returns>IActionResult</returns>
+        /// <remarks>
+        /// Agrega un comentario a una noticia específica y redirige a la página de visualización de la noticia.
+        /// </remarks>
         [HttpPost]
         [Route("/auth/{idNoticia}/comentario")]
         [Authorize]
@@ -60,8 +69,7 @@ namespace PeriodicoCSharp.Controllers
                 }
                 else
                 {
-                    // Manejar el caso en el que no se encuentre al usuario autenticado
-                    return Unauthorized("El usuario autenticado no pudo ser encontrado.");
+                    return View("~/Views/Home/login.cshtml");
                 }
             }
             catch (Exception ex)
