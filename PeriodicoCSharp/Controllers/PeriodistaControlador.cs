@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
+using PeriodicoCSharp.Utils;
 
 namespace PeriodicoCSharp.Controllers
 {
@@ -33,6 +34,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método ZonaPeriodista() de la clase PeriodistaController");
+
                 // Obtener listas de categorías y usuarios desde tus servicios
                 var categoriasDTO = _categoria.BuscarTodas();
 
@@ -47,7 +50,7 @@ namespace PeriodicoCSharp.Controllers
             catch (Exception e)
             {
                 ViewData["error"] = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
-                Console.WriteLine("ErrorZonaPeriodista - " + e);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método ZonaPeriodista() de la clase PeriodistaController: " + e.Message + e.StackTrace);
                 return View("~/Views/Home/menu.cshtml"); // Asegúrate de tener una vista llamada "Periodista" para redirigir en caso de error
             }
         }
@@ -65,6 +68,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método crearNoticia() de la clase PeriodistaController");
+
                 // Obtener el usuario autenticado
                 var usuario = _usuarioServicio.BuscarPorEmailDAO(User.Identity.Name);
 
@@ -106,6 +111,7 @@ namespace PeriodicoCSharp.Controllers
             {
                 // Manejar cualquier error que pueda ocurrir durante el proceso de guardado
                 Console.WriteLine("ERROR: " + ex.Message);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método crearNoticia() de la clase PeriodistaController: " + ex.Message + ex.StackTrace);
                 return RedirectToAction("Menu", "Login");
             }
         }

@@ -1,5 +1,6 @@
 ﻿using DAL.Entidades;
 using PeriodicoCSharp.DTO;
+using PeriodicoCSharp.Utils;
 using System;
 using System.Collections.Generic;
 
@@ -7,10 +8,17 @@ namespace PeriodicoCSharp.Servicios
 {
     public class ConversionDTOImpl : ConversionDTO
     {
+        /// <summary>
+        /// Convierte una lista de objetos Usuario en una lista de objetos UsuarioDTO para su envío a la capa de presentación.
+        /// </summary>
+        /// <param name="listaUsuario">Lista de objetos Usuario a convertir.</param>
+        /// <returns>Lista de objetos UsuarioDTO convertidos.</returns>
         public List<UsuarioDTO> listaUsuarioToDto(List<Usuario> listaUsuario)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método listaUsuarioToDto() en ConversionDTOImpl");
+
                 List<UsuarioDTO> listaDto = new List<UsuarioDTO>();
                 foreach (Usuario u in listaUsuario)
                 {
@@ -20,15 +28,23 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaUsuarioToDto()] - Error al convertir lista de Usuario DAO a lista de UsuarioDTO: " + e);
-                throw; 
+                // Registra el error y lanza una excepción
+                 Log.escribirEnFicheroLog("[ERROR ConversionDTOImpl - listaUsuarioToDto()] - Error al convertir lista de Usuario DAO a lista de UsuarioDTO: " + e);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Convierte un objeto Usuario en un objeto UsuarioDTO para su envío a la capa de presentación.
+        /// </summary>
+        /// <param name="u">Objeto Usuario a convertir.</param>
+        /// <returns>Objeto UsuarioDTO convertido.</returns>
         public UsuarioDTO usuarioToDto(Usuario u)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método usuarioToDto() en ConversionDTOImpl");
+
                 UsuarioDTO dto = new UsuarioDTO();
                 dto.NombreUsuario = u.NombreUsuario;
                 dto.ApellidosUsuario = u.ApellidosUsuario;
@@ -46,15 +62,23 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - usuarioToDto()] - Error al convertir Usuario DAO a UsuarioDTO: " + e);
-                throw; 
+                // Registra el error y lanza una excepción
+                 Log.escribirEnFicheroLog("[ERROR ConversionDTOImpl - usuarioToDto()] - Error al convertir Usuario DAO a UsuarioDTO: " + e);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Convierte un objeto Noticia en un objeto NoticiaDTO para su envío a la capa de presentación.
+        /// </summary>
+        /// <param name="noticia">Objeto Noticia a convertir.</param>
+        /// <returns>Objeto NoticiaDTO convertido.</returns>
         public NoticiaDTO noticiaToDto(Noticia noticia)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método noticiaToDto() en ConversionDTOImpl");
+
                 NoticiaDTO dto = new NoticiaDTO();
                 dto.IdNoticia = noticia.IdNoticia;
                 dto.TituloNoticia = noticia.TituloNoticia;
@@ -69,15 +93,23 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - noticiaToDto()] - Error al convertir Noticia DAO a NoticiaDTO: " + e);
-                throw; 
+                // Registra el error y lanza una excepción
+                 Log.escribirEnFicheroLog("[ERROR ConversionDTOImpl - noticiaToDto()] - Error al convertir Noticia DAO a NoticiaDTO: " + e);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Convierte una lista de objetos Noticia en una lista de objetos NoticiaDTO para su envío a la capa de presentación.
+        /// </summary>
+        /// <param name="listaNoticia">Lista de objetos Noticia a convertir.</param>
+        /// <returns>Lista de objetos NoticiaDTO convertidos.</returns>
         public List<NoticiaDTO> listaNoticiasToDto(List<Noticia> listaNoticia)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método listaNoticiasToDto() en ConversionDTOImpl");
+
                 List<NoticiaDTO> listaNoticiaDto = new List<NoticiaDTO>();
                 foreach (Noticia n in listaNoticia)
                 {
@@ -87,15 +119,23 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaNoticiasToDto()] - Error al convertir lista de Noticia DAO a lista de NoticiaDTO: " + e);
-                throw; 
+                // Registra el error y lanza una excepción
+                 Log.escribirEnFicheroLog("[ERROR ConversionDTOImpl - listaNoticiasToDto()] - Error al convertir lista de Noticia DAO a lista de NoticiaDTO: " + e);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Convierte un objeto Categoria en un objeto CategoriaDTO para su envío a la capa de presentación.
+        /// </summary>
+        /// <param name="categoria">Objeto Categoria a convertir.</param>
+        /// <returns>Objeto CategoriaDTO convertido.</returns>
         public CategoriaDTO categoriaToDTO(Categoria categoria)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método categoriaToDTO() en ConversionDTOImpl");
+
                 CategoriaDTO dto = new CategoriaDTO();
                 dto.IdCategoria = categoria.IdCategoria;
                 dto.TipoCategoria = categoria.TipoCategoria;
@@ -106,15 +146,23 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - categoriaToDTO()] - Error al convertir Categoria DAO a CategoriaDTO: " + e);
-                throw; 
+                // Registra el error y lanza una excepción
+                 Log.escribirEnFicheroLog("[ERROR ConversionDTOImpl - categoriaToDTO()] - Error al convertir Categoria DAO a CategoriaDTO: " + e);
+                throw;
             }
         }
 
+        /// <summary>
+        /// Convierte una lista de objetos Categoria en una lista de objetos CategoriaDTO para su envío a la capa de presentación.
+        /// </summary>
+        /// <param name="listaCategoria">Lista de objetos Categoria a convertir.</param>
+        /// <returns>Lista de objetos CategoriaDTO convertidos.</returns>
         public List<CategoriaDTO> listaCategoriaToDto(List<Categoria> listaCategoria)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método listaCategoriaToDto() en ConversionDTOImpl");
+
                 List<CategoriaDTO> listaCategoriaDto = new List<CategoriaDTO>();
                 foreach (Categoria c in listaCategoria)
                 {
@@ -124,8 +172,9 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine("\n[ERROR ConversionDTOImpl - listaCategoriaToDto()] - Error al convertir lista de Categoria DAO a lista de CategoriaDTO: " + e);
-                throw; 
+                // Registra el error y lanza una excepción
+                Log.escribirEnFicheroLog("[ERROR ConversionDTOImpl - listaCategoriaToDto()] - Error al convertir lista de Categoria DAO a lista de CategoriaDTO: " + e);
+                throw;
             }
         }
     }

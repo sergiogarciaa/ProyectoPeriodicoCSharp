@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
+using PeriodicoCSharp.Utils;
 using System.Globalization;
 
 namespace PeriodicoCSharp.Controllers
@@ -36,6 +37,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método AgregarComentario() de la clase NoticiasController");
+
                 // Recuperar el usuario autenticado por su nombre de usuario
                 var usuario = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
 
@@ -75,7 +78,7 @@ namespace PeriodicoCSharp.Controllers
             catch (Exception ex)
             {
                 // Manejar cualquier error que pueda ocurrir durante el proceso de guardado
-                Console.WriteLine("ERROR: " + ex.Message);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método AgregarComentario() de la clase NoticiasController: " + ex.Message + ex.StackTrace);
                 return RedirectToAction("Menu", "Login");
             }
         }

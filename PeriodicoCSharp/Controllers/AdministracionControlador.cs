@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
+using PeriodicoCSharp.Utils;
 
 namespace PeriodicoCSharp.Controllers
 {
@@ -12,7 +13,6 @@ namespace PeriodicoCSharp.Controllers
         {
             _usuarioServicio = usuarioServicio;
         }
-
         /// <summary>
         /// Método para mostrar el listado de usuarios en la vista de administración.
         /// </summary>
@@ -27,19 +27,21 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método ListadoUsuarios() de la clase AdministracionUsuariosController");
+
                 List<UsuarioDTO> usuarios = new List<UsuarioDTO>();
                 ViewBag.Usuarios = _usuarioServicio.BuscarTodos();
-                Console.WriteLine(usuarios);
 
                 return View("~/Views/Home/administracion.cshtml");
             }
             catch (Exception e)
             {
                 ViewData["error"] = "Ocurrió un error al obtener la lista de usuarios";
-                Console.WriteLine("[ERROR] Se lanzó una excepción en el método ListadoUsuarios() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método ListadoUsuarios() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
                 return View("~/Views/Home/menu.cshtml");
             }
         }
+
         /// <summary>
         /// Método para eliminar un usuario por su ID.
         /// </summary>
@@ -55,6 +57,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método EliminarUsuario() de la clase AdministracionUsuariosController");
+
                 UsuarioDTO usuario = _usuarioServicio.BuscarDtoPorId(id);
                 List<UsuarioDTO> usuarios = _usuarioServicio.BuscarTodos();
 
@@ -77,7 +81,7 @@ namespace PeriodicoCSharp.Controllers
             catch (Exception e)
             {
                 ViewData["error"] = "Ocurrió un error al eliminar el usuario";
-                Console.WriteLine("[ERROR] Se lanzó una excepción en el método EliminarUsuario() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método EliminarUsuario() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
                 return View("~/Views/Home/menu.cshtml");
             }
         }
@@ -97,6 +101,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método Editar() de la clase AdministracionUsuariosController");
+
                 UsuarioDTO usuarioDTO = _usuarioServicio.BuscarDtoPorId(id);
 
                 return View("~/Views/Home/edicion.cshtml", usuarioDTO);
@@ -104,7 +110,7 @@ namespace PeriodicoCSharp.Controllers
             catch (Exception e)
             {
                 ViewData["error"] = "Ocurrió un error al obtener el usuario para editar";
-                Console.WriteLine("[ERROR] Se lanzó una excepción en el método MostrarFormularioEdicion() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método Editar() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
                 return View("~/Views/Home/menu.cshtml");
             }
         }
@@ -129,6 +135,7 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método GuardarEdicion() de la clase AdministracionUsuariosController");
 
                 UsuarioDTO usuarioDTO = _usuarioServicio.BuscarDtoPorId(id);
                 usuarioDTO.NombreUsuario = nombre;
@@ -136,7 +143,6 @@ namespace PeriodicoCSharp.Controllers
                 usuarioDTO.DniUsuario = dni;
                 usuarioDTO.TlfUsuario = telefono;
                 usuarioDTO.Rol = rol;
-
 
                 _usuarioServicio.ActualizarUsuario(usuarioDTO);
 
@@ -148,6 +154,7 @@ namespace PeriodicoCSharp.Controllers
             catch (Exception e)
             {
                 ViewData["Error"] = "Ocurrió un error al editar el usuario";
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método GuardarEdicion() de la clase AdministracionUsuariosController: " + e.Message + e.StackTrace);
                 return View("~/Views/Home/menu.cshtml");
             }
         }

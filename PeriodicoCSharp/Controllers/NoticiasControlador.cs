@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PeriodicoCSharp.DTO;
 using PeriodicoCSharp.Servicios;
+using PeriodicoCSharp.Utils;
 
 namespace PeriodicoCSharp.Controllers
 {
@@ -37,6 +38,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método VerCategoria() de la clase HomeController");
+
                 var usuario = _usuarioServicio.BuscarPorEmail(User.Identity.Name);
 
                 if (usuario == null || !User.Identity.IsAuthenticated)
@@ -66,7 +69,7 @@ namespace PeriodicoCSharp.Controllers
             catch (Exception e)
             {
                 ViewData["Error"] = "Error al procesar la solicitud. Por favor, inténtelo de nuevo.";
-                Console.WriteLine("Error en VerCategoria: " + e.Message);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método VerCategoria() de la clase HomeController: " + e.Message + e.StackTrace);
                 return View("Menu");
             }
         }
@@ -82,6 +85,8 @@ namespace PeriodicoCSharp.Controllers
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando en el método VerNoticia() de la clase HomeController");
+
                 // Obtener la noticia por su ID
                 NoticiaDTO noticia = _noticia.buscarNoticiaPorIDDTO(idNoticia);
 
@@ -105,7 +110,7 @@ namespace PeriodicoCSharp.Controllers
             {
                 // Manejar cualquier error que pueda ocurrir durante la obtención de la noticia
                 ViewData["Error"] = "Error al cargar la noticia.";
-                Console.WriteLine("Error al cargar la noticia - " + ex);
+                Log.escribirEnFicheroLog("[ERROR] Se lanzó una excepción en el método VerNoticia() de la clase HomeController: " + ex.Message + ex.StackTrace);
                 return View("~/Views/Home/menu.cshtml"); // Asegúrate de tener una vista llamada "Error" para redirigir en caso de error
             }
         }

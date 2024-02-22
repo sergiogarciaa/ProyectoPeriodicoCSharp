@@ -6,6 +6,7 @@ using PeriodicoCSharp.DTO;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using PeriodicoCSharp.Utils;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -27,10 +28,16 @@ namespace PeriodicoCSharp.Servicios
             _emailServicio = emailServicio;
         }
 
+        /// <summary>
+        /// Registra un nuevo usuario en el sistema.
+        /// </summary>
+        /// <param name="userDto">DTO del usuario a registrar.</param>
+        /// <returns>DTO del usuario registrado.</returns>
         public UsuarioDTO Registrar(UsuarioDTO userDto)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método Registrar() en ImplementacionUsuario");
 
                 var usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == userDto.EmailUsuario && !u.CuentaConfirmada);
 
@@ -65,63 +72,85 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (ArgumentException ae)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - RegistrarAsync()] Argumento no válido al registrar usuario {ae.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - Registrar()] Argumento no válido al registrar usuario {ae.Message}");
                 return null;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - RegistrarAsync()] Error al registrar usuario {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - Registrar()] Error al registrar usuario {e.Message}");
                 return null;
             }
         }
 
+        /// <summary>
+        /// Verifica si la cuenta asociada al correo electrónico está confirmada.
+        /// </summary>
+        /// <param name="email">Correo electrónico del usuario.</param>
+        /// <returns>True si la cuenta está confirmada, False si no lo está o si ocurre un error.</returns>
         public bool EstaLaCuentaConfirmada(string email)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método EstaLaCuentaConfirmada() en ImplementacionUsuario");
+
                 Usuario? usuario = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == email);
                 return usuario != null && usuario.CuentaConfirmada;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - EstaLaCuentaConfirmada()] Error al comprobar si la cuenta ha sido confirmada {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - EstaLaCuentaConfirmada()] Error al comprobar si la cuenta ha sido confirmada {e.Message}");
                 return false;
             }
         }
 
+        /// <summary>
+        /// Confirma la cuenta de usuario utilizando un token de confirmación.
+        /// </summary>
+        /// <param name="token">Token de confirmación de cuenta.</param>
+        /// <returns>True si la cuenta se confirma correctamente, False si la cuenta no existe o ya está confirmada.</returns>
         public bool ConfirmarCuenta(string token)
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando al método ConfirmarCuenta() en ImplementacionUsuario");
+
                 Usuario? usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.TokenRecuperacion == token);
 
                 if (usuarioExistente != null && !usuarioExistente.CuentaConfirmada)
                 {
-                    UsuarioDTO usuario = _toDto.usuarioToDto(usuarioExistente);
+                    usuarioExistente.CuentaConfirmada = true;
+                    _contexto.SaveChanges();
                     return true;
                 }
                 else
                 {
-                    Console.WriteLine("La cuenta no existe o ya está confirmada");
+                    Log.escribirEnFicheroLog("La cuenta no existe o ya está confirmada");
                     return false;
                 }
             }
             catch (ArgumentException ae)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - ConfirmarCuenta()] Error al confirmar la cuenta {ae.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - ConfirmarCuenta()] Error al confirmar la cuenta {ae.Message}");
                 return false;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - ConfirmarCuenta()] Error de persistencia al confirmar la cuenta {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - ConfirmarCuenta()] Error de persistencia al confirmar la cuenta {e.Message}");
                 return false;
             }
         }
 
+        /// <summary>
+        /// Inicia el proceso de restablecimiento de contraseña utilizando el correo electrónico del usuario.
+        /// </summary>
+        /// <param name="emailUsuario">Correo electrónico del usuario.</param>
+        /// <returns>True si el proceso se inicia correctamente, False si el usuario no existe.</returns>
         public bool IniciarResetPassConEmail(string emailUsuario)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método IniciarResetPassConEmail() en ImplementacionUsuario");
+
                 Usuario? usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == emailUsuario);
 
                 if (usuarioExistente != null)
@@ -143,48 +172,34 @@ namespace PeriodicoCSharp.Servicios
                 }
                 else
                 {
-                    Console.WriteLine($"[Error IniciarResetPassConEmailAsync()] El usuario con email {emailUsuario} no existe");
+                     Log.escribirEnFicheroLog($"El usuario con email {emailUsuario} no existe");
                     return false;
                 }
             }
             catch (ArgumentException ae)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - IniciarResetPassConEmailAsync()] {ae.Message}");
+                Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - IniciarResetPassConEmail()] {ae.Message}");
                 return false;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - IniciarResetPassConEmailAsync()] {e.Message}");
+                Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - IniciarResetPassConEmail()] {e.Message}");
                 return false;
             }
         }
 
-        private string generarToken()
-        {
-            try
-            {
-
-                using (RandomNumberGenerator rng = new RNGCryptoServiceProvider())
-                {
-                    byte[] tokenBytes = new byte[30];
-                    rng.GetBytes(tokenBytes);
-
-                    return BitConverter.ToString(tokenBytes).Replace("-", "").ToLower();
-                }
-            }
-            catch (ArgumentException ae)
-            {
-                Console.WriteLine("[Error UsuarioServicioImpl -  generarToken()] Error al generar un token de usuario " + ae.Message);
-                return null;
-            }
-
-        }
-
+        /// <summary>
+        /// Modifica la contraseña del usuario utilizando el token de recuperación.
+        /// </summary>
+        /// <param name="usuario">DTO del usuario con el token de recuperación y la nueva contraseña.</param>
+        /// <returns>True si la contraseña se modifica correctamente, False si no se encuentra el usuario o si ocurre un error.</returns>
         public bool ModificarContraseñaConToken(UsuarioDTO usuario)
         {
             try
             {
-                Usuario? usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.TokenRecuperacion == usuario.TokenRecuperacion);
+                 Log.escribirEnFicheroLog("Entrando al método ModificarContraseñaConToken() en ImplementacionUsuario");
+
+                Usuario usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.TokenRecuperacion == usuario.TokenRecuperacion);
 
                 if (usuarioExistente != null)
                 {
@@ -199,15 +214,47 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - ModificarContraseñaConTokenAsync()] {e.Message}");
+                Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - ModificarContraseñaConToken()] {e.Message}");
                 return false;
             }
         }
 
+        /// <summary>
+        /// Genera un token de seguridad.
+        /// </summary>
+        /// <returns>Token generado.</returns>
+        private string generarToken()
+        {
+            try
+            {
+                 Log.escribirEnFicheroLog("Generando token de seguridad");
+
+                using (RandomNumberGenerator rng = new RNGCryptoServiceProvider())
+                {
+                    byte[] tokenBytes = new byte[30];
+                    rng.GetBytes(tokenBytes);
+
+                    return BitConverter.ToString(tokenBytes).Replace("-", "").ToLower();
+                }
+            }
+            catch (ArgumentException ae)
+            {
+                Log.escribirEnFicheroLog($"[Error UsuarioServicioImpl - generarToken()] Error al generar un token de usuario {ae.Message}");
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Obtiene un usuario por su token de recuperación.
+        /// </summary>
+        /// <param name="token">Token de recuperación del usuario.</param>
+        /// <returns>DTO del usuario si existe, de lo contrario, null.</returns>
         public UsuarioDTO ObtenerUsuarioPorToken(string token)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método ObtenerUsuarioPorToken() en ImplementacionUsuario");
+
                 Usuario? usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.TokenRecuperacion == token);
                 if (usuarioExistente != null)
                 {
@@ -215,50 +262,62 @@ namespace PeriodicoCSharp.Servicios
                 }
                 else
                 {
-                    Console.WriteLine($"No existe el usuario con el token {token}");
+                     Log.escribirEnFicheroLog($"No existe el usuario con el token {token}");
                     return null;
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - ObtenerUsuarioPorToken()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - ObtenerUsuarioPorToken()] {e.Message}");
                 return null;
             }
         }
 
+        /// <summary>
+        /// Verifica las credenciales de inicio de sesión de un usuario.
+        /// </summary>
+        /// <param name="emailUsuario">Correo electrónico del usuario.</param>
+        /// <param name="claveUsuario">Contraseña del usuario.</param>
+        /// <returns>True si las credenciales son válidas y la cuenta está confirmada, False de lo contrario.</returns>
         public bool verificarCredenciales(string emailUsuario, string claveUsuario)
         {
             try
             {
-     
+                 Log.escribirEnFicheroLog("Entrando al método verificarCredenciales() en ImplementacionUsuario");
 
                 string contraseñaEncriptada = _servicioEncriptar.Encriptar(claveUsuario);
                 Usuario? usuarioExistente = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == emailUsuario && u.ClaveUsuario == contraseñaEncriptada);
                 if (usuarioExistente == null)
                 {
-                   
+                     Log.escribirEnFicheroLog($"Credenciales inválidas para el usuario con email {emailUsuario}");
                     return false;
                 }
                 if (!usuarioExistente.CuentaConfirmada)
-                { 
+                {
+                     Log.escribirEnFicheroLog($"La cuenta del usuario con email {emailUsuario} no está confirmada");
                     return false;
                 }
 
-        
                 return true;
             }
             catch (ArgumentNullException e)
             {
-              
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - verificarCredenciales()] {e.Message}");
                 return false;
             }
-
         }
 
+        /// <summary>
+        /// Busca un usuario por su correo electrónico.
+        /// </summary>
+        /// <param name="email">Correo electrónico del usuario.</param>
+        /// <returns>DTO del usuario si existe, de lo contrario, null.</returns>
         public UsuarioDTO BuscarPorEmail(string email)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método BuscarPorEmail() en ImplementacionUsuario");
+
                 UsuarioDTO usuarioDTO = new UsuarioDTO();
                 var usuario = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == email);
 
@@ -271,37 +330,49 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarPorEmail()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - BuscarPorEmail()] {e.Message}");
                 return null;
             }
         }
 
+        /// <summary>
+        /// Elimina un usuario por su ID.
+        /// </summary>
+        /// <param name="id">ID del usuario a eliminar.</param>
+        /// <returns>Usuario eliminado si existe, de lo contrario, null.</returns>
         public Usuario Eliminar(long id)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método Eliminar() en ImplementacionUsuario");
+
                 Usuario? usuario = _contexto.Usuarios.Find(id);
                 if (usuario != null)
                 {
                     _contexto.Usuarios.Remove(usuario);
                     _contexto.SaveChanges();
-                    Console.WriteLine("Borrado con éxito");
+                     Log.escribirEnFicheroLog("Usuario eliminado con éxito");
                 }
                 return usuario;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - Eliminar()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - Eliminar()] {e.Message}");
                 return null;
             }
         }
 
+        /// <summary>
+        /// Actualiza la información de un usuario.
+        /// </summary>
+        /// <param name="usuarioDTO">DTO del usuario con la información actualizada.</param>
         public void ActualizarUsuario(UsuarioDTO usuarioDTO)
         {
             try
             {
+                 Log.escribirEnFicheroLog("Entrando al método ActualizarUsuario() en ImplementacionUsuario");
+
                 Usuario? usuarioActual = _contexto.Usuarios.Find(usuarioDTO.Id);
-                Console.WriteLine(usuarioDTO.NombreUsuario);
                 if (usuarioActual != null)
                 {
                     usuarioActual.NombreUsuario = usuarioDTO.NombreUsuario;
@@ -315,14 +386,21 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (ArgumentException ae)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - ActualizarUsuario()] {ae.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - ActualizarUsuario()] {ae.Message}");
             }
         }
 
+        /// <summary>
+        /// Busca un usuario por su ID y devuelve su DTO.
+        /// </summary>
+        /// <param name="id">ID del usuario.</param>
+        /// <returns>DTO del usuario si existe, de lo contrario, null.</returns>
         public UsuarioDTO BuscarDtoPorId(long id)
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando al método BuscarDtoPorId() en ImplementacionUsuario");
+
                 Usuario? usuario = _contexto.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
                 if (usuario != null)
                 {
@@ -331,63 +409,89 @@ namespace PeriodicoCSharp.Servicios
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarDtoPorId()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - BuscarDtoPorId()] {e.Message}");
             }
             return null;
         }
 
+        /// <summary>
+        /// Busca todos los usuarios y los devuelve como una lista de DTOs.
+        /// </summary>
+        /// <returns>Lista de DTOs de usuarios.</returns>
         public List<UsuarioDTO> BuscarTodos()
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando al método BuscarTodos() en ImplementacionUsuario");
+
                 return _toDto.listaUsuarioToDto(_contexto.Usuarios.ToList());
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarTodos()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - BuscarTodos()] {e.Message}");
                 return new List<UsuarioDTO>();
             }
         }
 
+        /// <summary>
+        /// Busca un usuario por su número de DNI.
+        /// </summary>
+        /// <param name="dni">Número de DNI del usuario.</param>
+        /// <returns>True si el usuario con el DNI dado existe, False de lo contrario.</returns>
         public bool BuscarPorDni(string dni)
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando al método BuscarPorDni() en ImplementacionUsuario");
 
                 Usuario? usuario = _contexto.Usuarios.FirstOrDefault(u => u.DniUsuario == dni);
-                return true;
+                return usuario != null;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarPorDni()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - BuscarPorDni()] {e.Message}");
                 return false;
             }
         }
 
+        /// <summary>
+        /// Busca un usuario por su ID.
+        /// </summary>
+        /// <param name="id">ID del usuario.</param>
+        /// <returns>Usuario si existe, de lo contrario, null.</returns>
         public Usuario BuscarPorId(long id)
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando al método BuscarPorId() en ImplementacionUsuario");
+
                 Usuario? usuario = _contexto.Usuarios.FirstOrDefault(u => u.IdUsuario == id);
                 return usuario;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarPorId()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - BuscarPorId()] {e.Message}");
                 return null;
             }
         }
 
+        /// <summary>
+        /// Busca un usuario por su correo electrónico.
+        /// </summary>
+        /// <param name="name">Correo electrónico del usuario.</param>
+        /// <returns>Usuario si existe, de lo contrario, null.</returns>
         public Usuario BuscarPorEmailDAO(string? name)
         {
             try
             {
+                Log.escribirEnFicheroLog("Entrando al método BuscarPorEmailDAO() en ImplementacionUsuario");
+
                 var usuario = _contexto.Usuarios.FirstOrDefault(u => u.EmailUsuario == name);
                 return usuario;
             }
             catch (Exception e)
             {
-                Console.WriteLine($"[Error ImplementacionUsuario - BuscarPorEmail()] {e.Message}");
+                 Log.escribirEnFicheroLog($"[Error ImplementacionUsuario - BuscarPorEmail()] {e.Message}");
                 return null;
             }
         }
