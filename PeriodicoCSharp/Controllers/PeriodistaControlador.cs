@@ -30,7 +30,7 @@ namespace PeriodicoCSharp.Controllers
         [HttpGet]
         [Route("/privada/zonaPeriodista")]
         [Authorize(Roles = "ROLE_3, ROLE_4")]
-        public IActionResult ZonaPeriodista()
+        public IActionResult ZonaPeriodista(bool publicado)
         {
             try
             {
@@ -44,6 +44,11 @@ namespace PeriodicoCSharp.Controllers
 
                 // Agregar un objeto NoticiaDTO al ViewBag para que la vista pueda mostrar y editar los datos
                 ViewBag.NoticiaDTO = new NoticiaDTO();
+
+                if (publicado)
+                {
+                    ViewData["noticiaCreada"] = "¡Noticia creada con exito!";
+                }
 
                 return View("~/Views/Home/periodista.cshtml");
             }
@@ -103,9 +108,9 @@ namespace PeriodicoCSharp.Controllers
 
                 // Guardar la noticia en la base de datos
                 _noticia.GuardarNoticia(noticia);
-
+                bool publicado = true;
                 // Redirigir al usuario a la página de zona de periodista si la noticia se guardó correctamente
-                return RedirectToAction("ZonaPeriodista", "Periodista");
+                return RedirectToAction("ZonaPeriodista", "Periodista", new {publicado});
             }
             catch (Exception ex)
             {

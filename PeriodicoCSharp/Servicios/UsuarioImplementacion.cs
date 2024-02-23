@@ -7,6 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
 using PeriodicoCSharp.Utils;
+using System.Text.RegularExpressions;
 
 namespace PeriodicoCSharp.Servicios
 {
@@ -55,20 +56,48 @@ namespace PeriodicoCSharp.Servicios
                     return userDto;
                 }
 
-                userDto.ClaveUsuario = _servicioEncriptar.Encriptar(userDto.ClaveUsuario);
-                Usuario usuarioDao = _toDao.usuarioToDao(userDto);
-                usuarioDao.FchAltaUsuario = DateTime.Now;
-                usuarioDao.Rol = "ROLE_1";
-                string token = generarToken();
-                usuarioDao.TokenRecuperacion = token;
+                if (userDto.NombreUsuario != null &&
+                    userDto.ApellidosUsuario != null&&
+                    userDto.DniUsuario != null &&
+                    userDto.EmailUsuario != null &&
+                    userDto.TlfUsuario != null &&
+                    userDto.ClaveUsuario != null)
+                {
+                    bool emailValido = Regex.IsMatch(userDto.EmailUsuario, @"^[^\s@]+@[^\s@]+\.[^\s@]+$");
+                    bool dniValido = Regex.IsMatch(userDto.DniUsuario, @"^\d{8}[a-zA-Z]$");
+                    bool telefonoValido = Regex.IsMatch(userDto.TlfUsuario, @"^\d{9}$");
 
-                _contexto.Usuarios.Add(usuarioDao);
-                _contexto.SaveChanges();
+                    if (emailValido && dniValido && telefonoValido)
+                    {
+                        userDto.ClaveUsuario = _servicioEncriptar.Encriptar(userDto.ClaveUsuario);
+                        Usuario usuarioDao = _toDao.usuarioToDao(userDto);
+                        usuarioDao.FchAltaUsuario = DateTime.Now;
+                        usuarioDao.Rol = "ROLE_1";
+                        string token = generarToken();
+                        usuarioDao.TokenRecuperacion = token;
 
-                string nombreUsuario = usuarioDao.NombreUsuario + " " + usuarioDao.ApellidosUsuario;
-                _emailServicio.EnviarEmailConfirmacion(userDto.EmailUsuario, nombreUsuario, token);
+                        _contexto.Usuarios.Add(usuarioDao);
+                        _contexto.SaveChanges();
 
-                return userDto;
+                        string nombreUsuario = usuarioDao.NombreUsuario + " " + usuarioDao.ApellidosUsuario;
+                        _emailServicio.EnviarEmailConfirmacion(userDto.EmailUsuario, nombreUsuario, token);
+
+                        return userDto;
+                    }
+                    else
+                    {
+                        userDto.EmailUsuario = "NoValido";
+                        return userDto;
+                    }
+                }
+                else
+                {
+                    userDto.EmailUsuario = "NoValido";
+                    return userDto;
+                }
+
+
+
             }
             catch (ArgumentException ae)
             {

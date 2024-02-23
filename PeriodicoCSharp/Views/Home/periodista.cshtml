@@ -2,40 +2,45 @@
 
 @{
     ViewData["Title"] = "Crear Noticia";
+    var creada = ViewData["noticiaCreada"] as string;
 }
 
-<div class="container py-4 mt-5">
-    <div style="text-align: center;">
+<div class="container py-4 mt-1">
+    <div style="text-align: center;" class="mb-5">
         <h3>Crear Noticia</h3>
     </div>
 
-    <div style="display: flex; justify-content: center;">
-        <div class="card bg-light" style="justify-content: center; text-align: center; width: 50%;">
-            <div class="card-header" style="justify-content: center; display: flex;">
-                <div class="contenedor form-registro">
-                    <form class="formEspecial" asp-action="crearNoticia" asp-controller="Periodista" method="post" enctype="multipart/form-data">
-                        <div class="form-field">
-                            <input type="text" id="TituloNoticia" name="TituloNoticia" class="input" placeholder="Título de la Noticia" required>
-                        </div>
-                        <div class="form-field">
-                            <textarea id="DescNoticia" name="DescNoticia" class="input" placeholder="Descripción de la Noticia" required></textarea>
-                        </div>
-                        <div class="form-field">
-                            <input type="file" id="foto" name="foto" accept="image/*" required>
-                        </div>
-                        <div class="form-field">
-                            <select id="idCategoria" name="idCategoria" class="input form-field d-flex text-center align-items-center" required>
-                                @foreach (var categoria in ViewBag.CategoriasDTO)
-                                {
-                                    <option value="@categoria.IdCategoria">@categoria.TipoCategoria</option>
-                                }
-                            </select>
-                        </div>
-                        <button type="submit" id="btnGuardarNoticia" class="form-btn">Guardar Noticia</button>
-                        <div class="mensajeContrasenya" id="mensajeContrasenya"></div>
-                    </form>
+    <div class="col-12">
+        <form method="post" enctype="multipart/form-data" action="/Periodista/crearNoticia">
+            <div class="row g-3 d-flex justify-content-between">
+                <div class="col-sm-6">
+                    <label class="form-label">Título</label>
+                    <input type="text" class="form-control" id="TituloNoticia" name="TituloNoticia" placeholder="Título de la Noticia" required="">
                 </div>
+                <div class="col-sm-3">
+                    <label class="form-label">Categoría</label><select id="idCategoria" name="idCategoria" class="form-control text-center align-items-center" required="">
+                        @foreach (var categoria in ViewBag.CategoriasDTO)
+                        {
+                            <option value="@categoria.IdCategoria">@categoria.TipoCategoria</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-12">
+                    <label class="form-label">Cuerpo</label>
+                    <textarea id="DescNoticia" name="DescNoticia" class="form-control" placeholder="Descripción de la Noticia" style="height: 345px;" required=""></textarea>
+                </div>
+                <div class="form-field">
+                    <input type="file" id="foto" name="foto" accept="image/*" required="">
+                </div>
+                <button type="submit" id="btnGuardarNoticia" class="form-btn">Guardar Noticia</button>
             </div>
-        </div>
+            <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BLRSs_sC5BPnEanNxUrzob0aCVhYg72PRTXGGvwEqUdZuuyl4EUCAZXM3NxQlmBOUMFpM1UnY--tgFyV8zMQ6JEtcUk_pKSpPtG1jx1YZCpuftDrFQomh3td_l8HRSAUxulB06whSyv2yjpREEJ1tFVPmBKKmQANmg-lO1kgO_mZ2LBIjDMbCtCe3rq9opHkw">
+        </form>
     </div>
+    @if (!string.IsNullOrEmpty(creada))
+    {
+        <script>
+            mostrarNotificacion("¡Noticia creada con exito!", "Ya se ha publicado su noticia", 'success');
+        </script>
+    }
 </div>

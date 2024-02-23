@@ -1,19 +1,23 @@
 ﻿function validarFormulario() { 
 
+    var dniOk, emailOk, tlfOk;
+    const dniRegex = /^[0-9]{8}[a-zA-Z]$/; // Expresión regular para 8 números seguidos de una letra (mayúscula o minúscula)
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Expresión regular para email.
+    const tlfRegex = /^\d{9}$/; // Expresión regular para telefono.
     var dniInput = document.getElementById('DniUsuario').value;
-    var dniRegex = /^[0-9]{8}[a-zA-Z]$/; // Expresión regular para 8 números seguidos de una letra (mayúscula o minúscula)
-    var DNIok;
     var clave = document.getElementById('claveUsuario').value;
     var confirmarClave = document.getElementById('confirmarClaveUsuario').value;
+    var nombreInput = document.getElementById('NombreUsuario').value;
+    var apellidoInput = document.getElementById('ApellidosUsuario').value;
+    var tlfInput = document.getElementById('TlfUsuario').value; 
+    var emailInput = document.getElementById('EmailUsuario').value;
 
-    if (dniRegex.test(dniInput)) {
-        DNIok = true;
-        
-    } else {
-        DNIok = false;
-    }
+    (dniRegex.test(dniInput)) ? dniOk = true : dniOk = false;
+    (emailRegex.test(emailInput)) ? emailOk = true : emailOk = false;
+    (tlfRegex.test(tlfInput)) ? tlfOk = true : tlfOk = false;
+    
 
-    if (clave === confirmarClave && DNIok && clave && confirmarClave) {
+    if (clave === confirmarClave && dniOk && emailOk && tlfOk && clave && confirmarClave && nombreInput && apellidoInput) {
         document.getElementById("btnRegistro").disabled = false; //habilita el boton
     }
     else {

@@ -99,6 +99,15 @@ public class LoginController : Controller
 
                 return View("~/Views/Home/registro.cshtml");
             }
+            else if(nuevoUsuario.EmailUsuario == "NoValido")
+            {
+                ViewData["NoValido"] = "Los datos aportados no son válidos";
+
+                // Registro de éxito en el log
+                Log.escribirEnFicheroLog("[RegistrarPost] Intento de registro aporta datos no válidos.");
+
+                return View("~/Views/Home/registro.cshtml");
+            }
             else
             {
                 ViewData["MensajeRegistroExitoso"] = "Registro del nuevo usuario OK";

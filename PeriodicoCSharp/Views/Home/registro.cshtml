@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "registro";
+    var error = ViewData["NoValido"] as string;
+
 }
 <div class="wrapper">
     <div class="logoLogin">
@@ -16,11 +18,11 @@
             <input type="hidden" name="returnUrl" value="@TempData["ReturnUrl"]" />
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-user"></span>
-                <input type="text" id="NombreUsuario" name="NombreUsuario" class="form-control" placeholder="Nombre" required />
+                <input type="text" id="NombreUsuario" name="NombreUsuario" class="form-control" placeholder="Nombre" required oninput="validarFormulario()"/>
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-user"></span>
-                <input type="text" id="ApellidosUsuario" name="ApellidosUsuario" class="form-control" placeholder="Apellidos" required />
+                <input type="text" id="ApellidosUsuario" name="ApellidosUsuario" class="form-control" placeholder="Apellidos" required oninput="validarFormulario()"/>
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-address-card"></span>
@@ -28,11 +30,11 @@
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-phone"></span>
-                <input type="tel" id="TlfUsuario" name="TlfUsuario" class="form-control" placeholder="Escribe tu número de teléfono" required />
+                <input type="tel" id="TlfUsuario" name="TlfUsuario" class="form-control" placeholder="Escribe tu número de teléfono" required oninput="validarFormulario()"  />
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-envelope"></span>
-                <input type="email" id="EmailUsuario" name="EmailUsuario" class="form-control" placeholder="Escribe tu correo electrónico" required />
+                <input type="email" id="EmailUsuario" name="EmailUsuario" class="form-control" placeholder="Escribe tu correo electrónico" required oninput="validarFormulario()"  />
             </div>
             <div class="form-field d-flex align-items-center">
                 <span class="fa fa-key"></span>
@@ -45,4 +47,10 @@
             <button type="submit" id="btnRegistro" class="btn btn-primary mt-5" oninput="validarFormulario()" disabled><i class="bi bi-person-add fs-5"> Crear cuenta</i></button>
         </form>
     </div>
+    @if (!string.IsNullOrEmpty(error))
+    {
+        <script>
+            mostrarNotificacion("¡Error en el registro!", "Los datos aportados no son válidos.", 'error');
+        </script>
+    }
 </div>
